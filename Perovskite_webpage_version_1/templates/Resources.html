@@ -1,0 +1,89 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+<!--Content of the database-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Content of the perovskite database</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>
+            A detailed description of the categories found in the database can be downloaded below.
+            This include a description of how the data in each category is formatted, when it was
+            implemented into the database, and what we know about accuracy.
+        </p>
+
+        <p class="demo-button">
+            <a href="/return_databaseInstructions" target="blank"><button class='btn btn-primary'>Download description of database content</button></a>
+        </p>
+
+    </div>
+</div>
+
+
+<!--The Github repositry-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">The codebase of the project</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>Most of the code written in the project is in Python, and the interactive graphics is implemented using the Python framework Bokeh.</p>
+        <p>All code is available at the projects github repository</p>
+        <p>The code is divided into several sections</p>
+        <ul>
+            <li>Code for the interactive graphics</li>
+            <li>Code for reading in, cleaning, and formatting user data, and for uploading data to the database</li>
+            <li>Code for regenerating figures used in papers with the latest data added to the database</li>
+            <li>Code for analysing data.</li>
+        </ul>
+        <p><a title="LINK TO GITHUB REPOSITORIES" href="https://github.com/Jesperkemist/PerovsktieDatabase" target="_blank" rel="noopener">Link to the projects Github repository</a></p>
+        <p>If you have written code that utilises the Perovskite Database Project and would like to share it here, please contact the project responsible.</p>
+
+    </div>
+</div>
+
+
+<!--The data extraction protocoll-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Data extraction protocol</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>
+            To upload new data to the database, the data must be formatted consistently with respect to the data already
+            in the database. The backend for inserting data to the database consists of an Excel template defining all categories
+            found in the database together with formatting guidelines. The latest version of the data extraction protocol can be
+            downloaded here. Instructions for how to fill in the template are found in the template. The instructions are also
+            available as a separate file that can be downloaded below.
+        </p>
+
+        <p class="demo-button">
+            <a href="/return_extractionProtocol" target="blank"><button class='btn btn-primary'>Download data extraction template</button></a>
+        </p>
+
+        <p class="demo-button">
+            <a href="/return_extractionInstructions" target="blank"><button class='btn btn-primary'>Download data extraction instructions</button></a>
+        </p>
+
+        <p>
+            The data extraction protocol contains around 400 different categories
+            Those can be grouped into: reference data, cell related data, data for every functional layer in the device stack, i.e. substrate, electron transport layer, perovskite, hole transport layer, back contact, etc., synthesis related data for every layer, as well as key metrics related to IV, QE, stability, and outdoor measurements
+        </p>
+
+        <img src="/static/img/Extraction protocol illustration version 2.png" style="width:100%">
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+

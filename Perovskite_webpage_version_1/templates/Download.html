@@ -1,0 +1,40 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Donwload data</h3>
+   </div>
+
+    <div class="panel-body">
+        <p>There are several ways to access the data in the database.</p>
+        <p><strong>By a dedicated download app</strong></p>
+        <p>The app is found under “Insights >> Perovskite Database Project” in the left side menu in Materials Zone’s system found on the link below</p>
+        <p><a title="Link to interactive graphics" href="https://app.materials.zone/items/my" target="_blank" rel="noopener">Link to interactive graphics</a></p>
+
+        <p>The app provides four types of data download.</p>
+        <ol>
+            <li>Download all data in the database in the form of a .csv file</li>
+            <li>Download all data associated to a specified DOI number</li>
+            <li>Download data based on interactive filtering</li>
+            <li>Download data based on a list of database ID-numbers</li>
+        </ol>
+        <p><strong>From the interactive graphics</strong></p>
+        <p>
+            For each graph generated from the interactive tools,
+            the data in that graph can be downloaded as a .csv file.
+        </p>
+
+        <!--<p><strong>By directly reading data from the database</strong></p>
+        <p>Connection details with read only access can be downloaded below.</p>
+        <p>NOT IMPLEMENTED YET</p>
+        <p>For assistance of how to use those, we refer to the example code found in the projects Github repository</p>-->
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,57 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Introduction</h3>
+    </div>
+
+    <div class="panel-body">
+        <p style="text-align: justify;">The Perovskite Database Project aims at making all perovskite device data, both past and future, available in a form adherent to the FAIR data principles, i.e. findable, accessible, interoperable, and reusable.</p>
+        <p style="text-align: justify;">In the initial phase of the project, the project team went through the over 16000 perovskite papers published until the end of February 2020 and extracted data for every single adequately described perovskite solar cell we could find. For papers published after that, the database relies on authors to upload their own data.</p>
+        <p style="text-align: justify;">The project is based around an open database and open-sourced tools enabling anyone, without any programming experience, to interactively explore, search, filter, analyse, and visualise the data. The core of those tools are a set of interactive graphics that can be reached from the web page.</p>
+    </div>
+</div>
+
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Examples from the database</h3>
+        <p class="panel-subtitle">Development of device performance</p>
+    </div>
+
+
+    <!--<div class="panel-body">
+        <div class="row">
+            <div class="column">
+                <img src="/static/img/Evolution of cell performance version 1.png" style="max-width:600px;width:100%">
+            </div>
+            <div class="column">
+                <img src="/static/img/Perovsktie composition and performance version 2.png" style="max-width:600px;width:100%">
+            </div>
+            <div class="column">
+                <img src="/static/img/Stability version 2.png" style="max-width:600px;width:100%">
+            </div>
+        </div>
+    </div>-->
+
+    <div class="panel-body">
+        <img src="/static/img/Evolution of cell performance version 1.png" style="max-width:600px;width:100%">
+    </div>
+
+    </div>
+
+
+    <div class="panel panel-headline">
+        <div class="panel-heading">
+            <h3 class="panel-title">A conceptual overview of the project</h3>
+            <p class="panel-subtitle">An illustration of the standard research cycle and of how the Perovskite Database Projects expand it.</p>
+        </div>
+
+        <div class="panel-body">
+            <img src="/static/img/Project overview sketch version 4.png" style="width:100%">
+        </div>
+    </div>
+
+
+    {% endblock %}

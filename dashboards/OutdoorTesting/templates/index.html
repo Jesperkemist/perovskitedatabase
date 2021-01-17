@@ -1,0 +1,62 @@
+{% extends base %}
+
+<!-- goes in head -->
+{% block preamble %}
+<style type="text/css">{% include 'styles.css' %}</style>
+<script type="text/javascript">{% include 'resize_observer.js' %}</script>
+<script type="text/javascript">
+    // This script sends the height to the host iframe by postMessage
+
+    // Set up observer to observe resize of the #main element when the document just loads
+    // This is a workaround because when resize and load are triggered initially, Bokeh models are not rendered
+    unobserveResizeOfMain = false;
+    var observer = new ResizeObserver(function () {
+        unobserveResizeOfMain = true;
+        sendDocHeightMsg();
+    });
+
+    // send the height of the document to iframe
+    function sendDocHeightMsg() {
+        var body = document.body, html = document.documentElement;
+        var height = html.offsetHeight
+        parent.postMessage(JSON.stringify({ 'docHeight': height }), '*');
+    }
+
+    function onLoadCallback(e) {
+        observer.observe(document.querySelector("#main"));
+    }
+
+    function onResizeCallback(e) {
+        if (unobserveResizeOfMain) {
+            observer.unobserve(document.documentElement);
+            unobserveResizeOfMain = false;
+        }
+        sendDocHeightMsg();
+    }
+
+    if (window.addEventListener) {
+        window.addEventListener('resize', onResizeCallback, false);
+        window.addEventListener('load', onLoadCallback, false);
+    } else if (window.attachEvent) { // ie8
+        window.attachEvent('onresize', onResizeCallback);
+        window.attachEvent('onload', onLoadCallback, false);
+    }
+</script>
+{% endblock %}
+
+<!-- goes in body -->
+{% block contents %}
+
+<div id="main">
+    <div id="loaderContainer">
+        <div id="loaderTrigger">
+            {{ embed(roots.loaderTrigger) }}
+        </div>
+        <div id="loader"></div>
+    </div>
+    <div id="mainComponent">
+        {{ embed(roots.main) }}
+    </div>
+</div>
+{% endblock %}
+

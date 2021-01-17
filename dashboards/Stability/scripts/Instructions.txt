@@ -1,0 +1,3 @@
+<h2>
+    About the interactive graphics. To be written
+</h2>

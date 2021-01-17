@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <title>The Perovskite Database</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="/static/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/vendor/linearicons/style.css">
+    <link rel="stylesheet" href="/static/assets/vendor/chartist/css/chartist-custom.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/static/assets/css/main.css">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="/static/assets/css/demo.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/assets/img/favicon.png">
+</head>
+
+<body>
+    <!-- WRAPPER -->
+    <div id="wrapper">
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #ffffff">
+            <div class="container-fluid">
+                <div class="navbar-text">
+                    <a href="index.html"><img src="/static/assets/img/Logo_version4_small_1.png" height="50" class="img-responsive logo"></a>
+                </div>
+                <div class="navbar-btn">
+                    <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+                </div>
+
+                <div class="navbar-text" style="position:absolute; left:50%; transform: translate(-50%); color:#000000">
+                    <h1>The Perovskite Database Project</h1>
+                </div>
+
+            </div>
+        </nav>
+        <!-- END NAVBAR -->
+        <!-- LEFT SIDEBAR -->
+        <div id="sidebar-nav" class="sidebar">
+            <div class="sidebar-scroll">
+                <nav>
+                    <ul class="nav">
+                        <li><a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}class="active"{% endif %}><i class="lnr lnr-home"></i> <span>Introduction</span></a></li>
+                        <li><a href="{{ url_for('Interactive_graphics') }}" {% if request.endpoint == 'Interactive_graphics' %}class="active"{% endif %}><i class="lnr lnr-chart-bars"></i> <span>Interactive graphics</span></a></li>
+                        <li><a href="{{ url_for('Resources') }}" {% if request.endpoint == 'Resources' %}class="active"{% endif %}><i class="lnr lnr-link"></i> <span>Resources</span></a></li>
+                        <li><a href="{{ url_for('Download') }}" {% if request.endpoint == 'Download' %}class="active"{% endif %}><i class="lnr lnr-database"></i> <span>Download data</span></a></li>
+                        <li><a href="{{ url_for('Upload') }}" {% if request.endpoint == 'Upload' %}class="active"{% endif %}><i class="lnr lnr-upload"></i> <span>Upload data</span></a></li>
+                        <li><a href="{{ url_for('Contributors') }}" {% if request.endpoint == 'Contributors' %}class="active"{% endif %}><i class="lnr lnr-users"></i> <span>Contributors</span></a></li>
+                        <li><a href="{{ url_for('Papers') }}" {% if request.endpoint == 'Papers' %}class="active"{% endif %}><i class="lnr lnr-file-empty"></i> <span>Papers based on the project</span></a></li>
+                        <li><a href="{{ url_for('Presentations') }}" {% if request.endpoint == 'Presentations' %}class="active"{% endif %}><i class="lnr lnr-film-play"></i> <span>Precentations</span></a></li>
+                        <li><a href="{{ url_for('Funding') }}" {% if request.endpoint == 'Funding' %}class="active"{% endif %}><i class="lnr lnr-diamond"></i> <span>Partners</span></a></li>
+                        <li><a href="{{ url_for('How_to_cite') }}" {% if request.endpoint == 'How_to_cite' %}class="active"{% endif %}><i class="lnr lnr-pencil"></i> <span>How to cite</span></a></li>
+                        <li><a href="{{ url_for('Contact') }}" {% if request.endpoint == 'Contact' %}class="active"{% endif %}><i class="lnr lnr-envelope"></i> <span>Contact</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- END LEFT SIDEBAR -->
+        <!-- MAIN -->
+        <div class="main">
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <div class="container-fluid">
+
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+            <!-- END MAIN CONTENT -->
+        </div>
+        <!-- END MAIN -->
+        <div class="clearfix"></div>
+        <footer>
+            <div class="container-fluid">
+                <p> The Perovskite Database Project. T. J. Jacobsson et al. 2020</p>
+            </div>
+        </footer>
+    </div>
+    <!-- END WRAPPER -->
+    <!-- Javascript -->
+    <script src="/static/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/static/assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <script src="/static/assets/vendor/chartist/js/chartist.min.js"></script>
+    <script src="/static/assets/scripts/klorofil-common.js"></script>
+
+    {% block scripts %}{% endblock %}
+
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+README.md
+This repository contains a simple example of a Materials Zone Bokeh project. It can be used as an initial template for creating your own project.
+
+Project structure
+The project should have the following structure:
+
+project
++-- README.md
++-- Dockerfile
++-- requirements.txt
++-- dashboards/
+|   +-- health.py
+|   +-- error.py
+|   +-- line_plot
+|       +-- main.py
+|       +-- templates
+|           +-- index.html
+|           +-- resize_observer.js
+|   +-- another_dashboard
+|       +-- main.py
+|       +-- templates
+|           +-- index.html
+|           +-- resize_observer.js
++-- utility_modules/
+|   +-- __init__.py
+|   +-- module_1.py
+|   +-- module_2.py
+This example of a Bokeh project contains two dashboards (also known as apps) and a utilitly_modules package that may contain utility functions and classes that are common to both dashboards.
+
+Important things to note:
+
+The requirements.txt file must contain all the modules used in the project. This file can be created by running the command pip freeze -> requirements.txt in the main directory after all the packages have been installed using pip install.
+The requirements.txt file must also contain git+https://github.com/materialscloud/mz-bokeh-package.git@v0.0.1. This package contains modules that are needed for embedding your project in the Materials Zone web application. In particular, it contains an authentication module that is used to authenticate users that want to use your project. NOTE: In the future, we will add this package to the python package index, and then it can directly be installed through pip.
+In each dashboard, every layout added to root using curdoc().add_root(layout) must have its name property set, and this name must be used to embed the layout in the index.html template. For example, if the name is set to main, then this will be embedded into the template using the tag {{ embed(roots.main) }}. See main.py and index.html for an example.
+The script in the preamble of index.html and the resize_observer.js file are both essential for embedding the app in the Materials Zone web application and should not be removed, and, in the contents block of the index.html file, the main block should always be a div element with id set to "main".
+When the app is loaded in the Materials Zone web application, it receives information about the current user using the app via an authentication process. This information can be retrieved from within the app by adding from mz_bokeh_package.auth import CurrentUser in the imports section of your dashboard and then retrieving the user_id using method CurrentUser.get_user_id(), the user_key using CurrentUser.get_user_key() , and the api_key using CurrentUser.get_api_key(). The latter two are essential for making API requests using the Materiasl Zone API.
+Running/Testing the app using the local python installation
+To run the app locally you should first set two environment variables that contain your user_key and api_key in order to simulate the authentication process that will occur when the Bokeh app is embedded in the Materials Zone web application. This is achieved by running the commands:
+
+export USER_KEY=A1H2J1...AA
+export API_KEY=U2JSJ...JS
+These keys can be obtained by going to settings -> profile settings in the Materials Zone web application and clicking download in the API Key section.
+
+After installing the requirements, the bokeh app can be ran locally by executing the following command from a terminal from the main directory of the project
+
+bokeh serve dashboards/line_plot
+Here, line_plot should be replaced by the name of your dashboard. You can now test your dashboard by visiting the URL
+
+http://localhost:5006/line_plot
+Running/Testing the app locally using Docker
+When the project will be deployed in the Materials Zone web application, it will be containerized using Docker. It is, therefore, recommended to dockerize your project locally, run it and test it. This is a good simulation of how the app will run in the web application, and many problems (such as platform dependent problems) can be detected in advance this way.
+
+First, make sure that Docker is installed on your computer. Then, build the Docker image by running the following command in a terminal from the main directory of your project:
+
+docker build -t my-project:latest .
+Here, my-project is a name you assign to your docker image and latest is a tag that you assign to this name, and could indicate, for example, latest, a version number v1, or a git commit hash.
+
+If the image was built successfully, you can now run it by running the command (make sure the enviroment variables USER_KEY and API_KEY are set as explained before):
+
+docker run --rm -it -p 5006:5006 --env ROUTE_PREFIX=my-project --env BOKEH_APPS_DOMAIN=0.0.0.0:5006 --env USER_KEY=$USER_KEY --env API_KEY=$API_KEY --name my-project my-project:latest
+You can now test your app by visiting the following URL in your browser (NOTE: the host is 0.0.0.0, not localhost):
+
+http://0.0.0.0:5006/my-project/line_plot

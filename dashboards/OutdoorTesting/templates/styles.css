@@ -1,0 +1,89 @@
+/* makes sure padding and border are included in the total width and height of the elements */
+* {
+  box-sizing: border-box;
+}
+
+/* enable ordering of the components (webkit is for Safari 6.1+) */
+#main {
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    min-height: 200px;
+}
+
+/* set ordering for Safari 6.1+ */
+div#mainComponent   {-webkit-order: 1;}
+
+/* set ordering standard syntax */
+div#mainComponent   {order: 1;}
+
+/* component dependant properties */
+div#mainComponent {
+    width: 100%;
+}
+
+/* specific layout for large screens (default is for small screens like mobile) */
+@media screen and (min-width: 950px) {
+
+    /* enable ordering of the components (webkit is for Safari 6.1+) */
+    #main {
+        flex-flow: row wrap;
+    }
+
+    /* set ordering for Safari 6.1+ */
+    div#mainComponent   {-webkit-order: 1;}
+
+    /* set ordering standard syntax */
+    div#mainComponent   {order: 1;}
+
+    /* component dependant properties */
+    div#mainComponent {
+    }
+
+}
+
+/* general styling for all document */
+.bk-root {
+    font-family: sans-serif
+}
+
+
+/* all styling related to the loading spinner */
+
+#loaderTrigger {
+    position: absolute;
+}
+
+#loaderContainer {
+    position: absolute;
+    top: 0px;
+    left 0px;
+    z-index: 1;
+    align-content: center;
+    width: 100%;
+    margin-top: 50px;
+    visibility: visible;
+}
+
+#loader {
+  margin: auto;
+  border: 10px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 10px solid #4AC5DB;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

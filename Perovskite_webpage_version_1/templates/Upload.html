@@ -1,0 +1,92 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">More data makes the database more valuabel</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>
+            The database was initiated by collecting all perovskite device data up to
+            the end of February 2020. Our vision is that the perovskite community should
+            embrace this as a valuable resource and start to upload also new data so that
+            we can stay up to date and build what we can think of as the Wikipedia of perovskite
+            science.
+        </p>
+
+        <p>
+            We thus encourage anyone to upload new device data.
+            Ideally, we would like to have data for every device ever made,
+            regardless if it is a highly efficient or a failed device, but some
+            data is much better than no data.
+        </p>
+    </div>
+</div>
+
+
+<!--The data extraction protocoll-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Data extraction protocol</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>
+            To upload new data to the database, the data must be formatted consistently with respect to the data already
+            in the database. The backend for inserting data to the database consists of an Excel template defining all categories
+            found in the database together with formatting guidelines. The latest version of the data extraction protocol can be
+            downloaded here. Instructions for how to fill in the template are found in the template. The instructions are also
+            available as a separate file that can be downloaded below.
+        </p>
+
+        <p class="demo-button">
+            <a href="/return_extractionProtocol" target="blank"><button class='btn btn-primary'>Download data extraction template</button></a>
+        </p>
+
+        <p class="demo-button">
+            <a href="/return_extractionInstructions" target="blank"><button class='btn btn-primary'>Download data extraction instructions</button></a>
+        </p>
+    </div>
+</div>
+
+
+<!--Upploading data-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Upload data</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>
+            To upload data entered in the data template,
+            you go the data upload app hosted by MaterialsZone.
+        </p>
+
+        <p>The app is found under “Insights >> Perovskite Database Project” in the left side menu in Materials Zone’s system found on the link below</p>
+        <p><a title="Link to interactive graphics" href="https://app.materials.zone/items/my" target="_blank" rel="noopener">Link to interactive graphics</a></p>
+    </div>
+</div>
+
+<!--Reasons to uplaod data-->
+<div class="panel panel-headline">
+    <div class="panel-heading">
+        <h3 class="panel-title">Reasons for uploading data</h3>
+    </div>
+
+    <div class="panel-body">
+        <p>Uploading new data will take some time and effort. That is unavoidable, but there are several good reasons to why it is worth that effort.</p>
+        <ul>
+            <li>This project demonstrates the power of aggregated datasets adhering to the FAIR data principles, and that alone should provide an incentive to contribute.</li>
+            <li>Sharing data in this way gives it new life and draws additional attention to the original publication</li>
+            <li>Sharing data in this way is a way to comply with the demands for openness more frequently seen from taxpayers, funding agencies, and publishers.</li>
+            <li>Uploading as much data as possible, both for good and bad devices, is a service to the community which helps to accelerate the development of new solar cell technology.</li>
+            <li>Finally, by planning for sharing data already from the start of a project, the tools and protocols provided here can help in organising and improving local data management and thereby in the end simplify planning, analysis, and writing.</li>
+        </ul>
+        </p>
+    </div>
+</div>
+
+
+{% endblock %}

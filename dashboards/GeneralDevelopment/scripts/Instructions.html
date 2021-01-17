@@ -1,0 +1,36 @@
+﻿<p><strong>Instructions</strong></p>
+<p>The purpose of this plot is to compare the how deice performance have evolved over time, but there are plenty of options to compare different parameters against each other.</p>
+<p>&nbsp;</p>
+<p><strong>Redirection to original sources</strong></p>
+<p>By clicking on a datapoint in the figure, you are directly redirected to the original paper. This is based on link generated from the DOI number and works most of the time.</p>
+<p>&nbsp;</p>
+<p><strong>Using the figures</strong></p>
+<p>The figures generated with this tool can be downloaded and you are free to use them any way you want, but please, cite the source.</p>
+<p>&nbsp;</p>
+<p><strong>Categorical plots</strong></p>
+<p>The default behaviour when changing what is compared on the x-axis is to filter out the five categories with most data. Otherwise, you may end up with a plot of a few thousand categories, which both is hard to interpret and time consuming to generate. After the initial canvas is drawn, the categories can be selected freely.</p>
+<p>&nbsp;</p>
+<p><strong>Selected data from plot in tables</strong></p>
+<p>This table shows data that have been marked with the lasso tool found in the right side of each figure</p>
+<p>&nbsp;</p>
+<p><strong>Values of -1 in the data table</strong></p>
+<p>The framework used for generating the figures does not handle nan values very well. All nan values have therefore been converted to -1 before plotting. This is only the case for data found in the data table and not for downloaded data.</p>
+<p>&nbsp;</p>
+<p><strong>Concerning behaviour of sliders</strong></p>
+<p>When both endpoints of a range slider are at the end points, it is not used while filtering the data, i.e., data beyond the slider limits are included.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Concerning PCE values</strong></p>
+<p>For the PCE values in the figure. If a stabilised value is available, that one is used. If not, the value from the reversed voltage scan is used (i.e. Voc to 0) if available. If not, values from the forward scan are used.</p>
+<p>&nbsp;</p>
+<p><strong>Concerning light intensity</strong></p>
+<p>In the datasets, there are cells that have been measured at non-standard condition e.g. with indoor lightning or under monochromatic lightning. Those cells could easily get efficiencies higher than what they would get under standard condition. To exclude those cells, the standard procedure is to filter out any cell where the reported light intensity is not between 90 and 110 mW/cm^2. That can easily be changed by using the light intensity slider.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Concerning options in menus</strong></p>
+<p>The options in the multiselect menus are generated automatically to include every option recorded in the database. That means that there could be more than one formatting variation for the same thing if someone has missed to follow all formatting instructions when uploading the data to the database.</p>
+<p><strong>&nbsp;</strong></p>
+<p><strong>Replotting of figures</strong></p>
+<p>Operations under the headline &ldquo;Figure properties&rdquo; redraws the figure which could be a slow operation when a large number of points must be generated.</p>
+<p>Buttons with Boolean filters and multiselect menus may require additional data to be read from the database but does not require the figure to be redrawn which usually is a faster operation.</p>
+<p>&nbsp;</p>
+<p><strong>Downloading data</strong></p>
+<p>When downloading data from the data table, a csv file is generated with all data in the database for the selected cells. If a large number of cells is chosen, this could be a slow process. Excel usually does a good job reading in the generated CSV file with care taken to corner cases like data fields containing commas or other special characters.</p>
