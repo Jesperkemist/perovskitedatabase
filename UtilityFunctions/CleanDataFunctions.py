@@ -575,6 +575,7 @@ def dataColumnFormating(columnNames):
         # Remove initial and ending blank spaces
         item = item.strip()
 
+
         # Corect some miss spelings
         if item == 'Cell area [cm^2] (active masured area)':
             item = 'Cell area [cm^2] (active measured area)'
