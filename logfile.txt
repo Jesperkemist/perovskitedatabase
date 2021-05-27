@@ -1,9 +1,73 @@
-Initiated data cleaning procedure for 2020-12-02 Jacobsson small test_v4.xlsx
-Finished data cleaning procedure for 2020-12-02 Jacobsson small test_v4.xlsx
-Saved cleaned data
-Start to derrive data based on 2020-12-02 Jacobsson small test_v4.xlsx
-Finished to derrive data based on 2020-12-02 Jacobsson small test_v4.xlsx
+Initiated data cleaning procedure for 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Faild with dataColumnFormating
+Cound not read in: Module. Area. Total [cm^2] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: ETL. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Perovskite. Composition. Perovskite ABC3 structure [TRUE/FALSE] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Perovskite. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Failed to process: thickesses for True on row 0
+Failed to process: thickesses for True on row 0
+Failed to process: thickesses for True on row 0
+Cound not read in: HTL. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Failed to process: thickesses for 1500-2000 on row 0
+Cound not read in: Backcontact. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Add. Lay. Front. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Add. Lay. Back. Storage. Relative humidity [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: JV. Reverse scan. PCE [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: JV. Forward scan. PCE [%] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Stability. Protocol [ISOS x/IEC x/ …] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Outdoor. Protocol [ISOS x/IEC x/ …] from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Cound not read in: Outdoor. Link. Irradiance data from: 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Finished data cleaning procedure for 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Failed to saved clean data at 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Start to derrive data based on 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
+Failed to derrive the hysteresis index on row 0
+Failed to derrive the hysteresis index on row 1
+Failed to derrive the hysteresis index on row 2
+Failed to derrive the hysteresis index on row 3
+Failed to derrive the hysteresis index on row 4
+Failed to derrive the hysteresis index on row 5
+Failed to derrive the hysteresis index on row 6
+Failed to derrive the hysteresis index on row 7
+Failed to derrive the hysteresis index on row 8
+Failed to derrive the hysteresis index on row 9
+Failed to derrive the hysteresis index on row 10
+Failed to derrive the hysteresis index on row 11
+Failed to derrive the hysteresis index on row 12
+Failed to derrive the hysteresis index on row 13
+Failed to derrive the hysteresis index on row 14
+Failed to derrive the hysteresis index on row 15
+Failed to derrive the hysteresis index on row 16
+Failed to derrive the hysteresis index on row 17
+Failed to derrive the hysteresis index on row 18
+Failed to derrive the hysteresis index on row 19
+Failed to derrive the hysteresis index on row 20
+Failed to derrive the hysteresis index on row 21
+Failed to derrive the hysteresis index on row 22
+Failed to derrive the hysteresis index on row 23
+Failed to derrive the hysteresis index on row 24
+Failed to derrive the hysteresis index on row 25
+Failed to derrive the hysteresis index on row 26
+Failed to derrive the hysteresis index on row 27
+Failed to derrive the hysteresis index on row 28
+Failed to derrive the hysteresis index on row 29
+Failed to derrive the hysteresis index on row 30
+Failed to derrive the hysteresis index on row 31
+Failed to derrive the hysteresis index on row 32
+Failed to derrive the hysteresis index on row 33
+Finished to derrive data based on 2021-05-27 Extraction protocolls version 5_4_JZ_slot die coating_v1.xlsx
 Saved derived data
+Searching for citation data for paper on row 1
+Searching for citation data for paper on row 4
+Searching for citation data for paper on row 7
+Searching for citation data for paper on row 11
+Searching for citation data for paper on row 19
 Saved citation data
 Saved compleated data
 -----------------------------------------

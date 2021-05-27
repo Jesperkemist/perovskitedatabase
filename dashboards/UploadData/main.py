@@ -25,7 +25,7 @@ from mz_bokeh_package.auth import CurrentUser
 # For autentication
 user_name = CurrentUser.get_user_id()
 
-#%% Create each of the tabs in the Bokeh application adn add them together
+#%% Create each of the tabs in the Bokeh application and add them together
 about, singelJunctionData = readData.interactiveEngine()
 
 # Put all the tabs in one application
