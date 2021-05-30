@@ -566,6 +566,9 @@ def dataColumnFormating(columnNames):
 
     newNames = []
     for item in columnNames:
+        # Convert to string
+        item = str(item)
+
         # Remove new lines characters
         item = item.replace('\n', ' ')
 
@@ -574,6 +577,7 @@ def dataColumnFormating(columnNames):
 
         # Remove initial and ending blank spaces
         item = item.strip()
+
 
         # Corect some miss spelings
         if item == 'Cell area [cm^2] (active masured area)':

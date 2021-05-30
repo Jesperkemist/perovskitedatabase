@@ -213,7 +213,8 @@ def dataCleaning(userData, filePaths):
         print(f'Failed to clean data for: {filePaths["dataOriginalFileName"]}')
 
     # Extract file ending
-    fileEnding = os.path.splitext(os.path.basename(filePaths['dataOriginalFileName']))[1]
+    #fileEnding = os.path.splitext(os.path.basename(filePaths['dataOriginalFileName']))[1]
+    fileEnding = os.path.splitext(os.path.basename(filePaths['dataCleanedFilePath']))[1]
 
     # Save cleaned data
     if fileEnding == '.xlsx':

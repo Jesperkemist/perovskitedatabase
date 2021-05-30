@@ -316,7 +316,7 @@ def interactiveEngine():
         saveFilename = uniqueFilename(filename, filePaths['dataOriginalDirectoryPath'])
 
         # Update filePaths to where to save files localy
-        updateFilePaths(filename, saveFilename, filePaths, filetype = '.csv')
+        filePaths = updateFilePaths(filename, saveFilename, filePaths, filetype = '.csv')
 
         # Save userfile to local storage
         userfile = open(filePaths['dataOriginalFilePath'], 'wb')
