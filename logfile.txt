@@ -1,20 +1,13 @@
-Initiated data cleaning procedure for 2021-05-30 Extraction protocolls version 5_4_JZ_slot die coating_v2.xlsx
-Failed to process: thickesses for True on row 0
-Failed to process: thickesses for True on row 0
-Failed to process: thickesses for True on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Failed to process: thickesses for 1500-2000 on row 0
-Finished data cleaning procedure for 2021-05-30 Extraction protocolls version 5_4_JZ_slot die coating_v2.xlsx
+Initiated data cleaning procedure for 2021-06-20 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
+Finished data cleaning procedure for 2021-06-20 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
 Saved cleaned data
-Start to derrive data based on 2021-05-30 Extraction protocolls version 5_4_JZ_slot die coating_v2.xlsx
-Finished to derrive data based on 2021-05-30 Extraction protocolls version 5_4_JZ_slot die coating_v2.xlsx
+Start to derrive data based on 2021-06-20 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
+Finished to derrive data based on 2021-06-20 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
 Saved derived data
+Searching for citation data for paper on row 0
+Searching for citation data for paper on row 3
+Searching for citation data for paper on row 4
+Searching for citation data for paper on row 5
 Saved citation data
 Saved compleated data
 -----------------------------------------
