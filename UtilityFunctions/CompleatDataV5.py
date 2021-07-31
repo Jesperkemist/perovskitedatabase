@@ -46,7 +46,12 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
     DOI_saved_files_temp['Dict'] = []
 
     # Download reference data for all DOI not previously downloaded
-    listOfSavedDOI = DOI_saved['DOI'].tolist()
+    if Old_DOI_file_excist == True:
+        listOfSavedDOI = DOI_saved['DOI'].tolist()
+    else:
+        listOfSavedDOI = []
+    
+    
     for i, DOI in enumerate(DOInumbers):
         # Check if metadata already is downloaded
         if DOI in listOfSavedDOI or DOI in DOI_saved_files_temp['DOI'].tolist():
