@@ -529,7 +529,7 @@ def interactiveEngine():
                 if rangeSliders[category].value[0] > sliderLimits[category][0] or rangeSliders[category].value[1] < sliderLimits[category][1]:
                     data = data[(data[category] > rangeSliders[category].value[0]) & (data[category] < rangeSliders[category].value[1])]
 
-        # The data range slider apears to behae diferently on diferent systems
+        # The data range slider apears to behave diferently on diferent systems
         if 'Ref_publication_date' in presentDataCategories:
             try:
                 datetime.datetime.fromtimestamp(daterangeSliders['Ref_publication_date'].value[0]/1000)
@@ -1091,7 +1091,7 @@ def interactiveEngine():
         'Stability_light_intensity' : (0, 500),
         'Stability_relative_humidity_average_value' : (0, 100),
         'Stability_PCE_initial_value' : (0, 25),
-        'temperature_range_max' : (-80, 100),
+        'Stability_temperature_range' : (-80, 100),
         }
 
     rangeSliders = {
@@ -1101,7 +1101,7 @@ def interactiveEngine():
         'Stability_light_intensity' : RangeSlider(start=sliderLimits['Stability_light_intensity'][0], end=sliderLimits['Stability_light_intensity'][1], value=(sliderLimits['Stability_light_intensity'][0], sliderLimits['Stability_light_intensity'][1]), step=1, title="Light Intensity [mW/cm^2]"),
         'Stability_relative_humidity_average_value' : RangeSlider(start=sliderLimits['Stability_relative_humidity_average_value'][0], end=sliderLimits['Stability_relative_humidity_average_value'][1], value=(sliderLimits['Stability_relative_humidity_average_value'][0], sliderLimits['Stability_relative_humidity_average_value'][1]), step=1, title="Relative humidity [%]"),
         'Stability_PCE_initial_value' : RangeSlider(start=sliderLimits['Stability_PCE_initial_value'][0], end=sliderLimits['Stability_PCE_initial_value'][1], value=(sliderLimits['Stability_PCE_initial_value'][0], sliderLimits['Stability_PCE_initial_value'][1]), step=1, title="Initial cell efficinecy [%]"),
-        'temperature_range_max' : RangeSlider(start=sliderLimits['temperature_range_max'][0], end=sliderLimits['temperature_range_max'][1], value=(sliderLimits['temperature_range_max'][0], sliderLimits['temperature_range_max'][1]), step=1, title="Temperature (max) [deg. C]"),
+        'Stability_temperature_range' : RangeSlider(start=sliderLimits['Stability_temperature_range'][0], end=sliderLimits['Stability_temperature_range'][1], value=(sliderLimits['Stability_temperature_range'][0], sliderLimits['Stability_temperature_range'][1]), step=1, title="Temperature (max) [deg. C]"),
         }
 
     sliders = {
@@ -1212,7 +1212,7 @@ def interactiveEngine():
         concernignTheMeasurement, 
         rangeSliders['Stability_PCE_initial_value'],
         rangeSliders['Stability_light_intensity'],  
-        rangeSliders['temperature_range_max'],
+        rangeSliders['Stability_temperature_range'],
         rangeSliders['Stability_relative_humidity_average_value'],      
         multiselects['Stability_light_load_condition'],        
         multiselects['Stability_temperature_load_condition'],

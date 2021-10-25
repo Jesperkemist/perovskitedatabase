@@ -347,11 +347,15 @@ def dataManipulation(data):
 
     # Extract the higher temperature in the temperature range and add that as a separate column
     if 'Outdoor_temperature_range' in list(data.columns):
-        data['Outdoor_temperature_range_max'] = getMaxTemperature(data['Outdoor_temperature_range'])
+        #data['Outdoor_temperature_range_max'] = getMaxTemperature(data['Outdoor_temperature_range'])
+        data['Outdoor_temperature_range'] = getMaxTemperature(data['Outdoor_temperature_range'])
+
 
     # Extract the higher temperature in the temperature range and add that as a separate column
     if 'Stability_temperature_range' in list(data.columns):
-        data['Stability_temperature_range_max'] = getMaxTemperature(data['Stability_temperature_range'])
+        #data['Stability_temperature_range_max'] = getMaxTemperature(data['Stability_temperature_range'])
+        data['Stability_temperature_range'] = getMaxTemperature(data['Stability_temperature_range'])
+
 
     return data
 

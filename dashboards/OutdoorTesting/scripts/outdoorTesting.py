@@ -1103,7 +1103,7 @@ def interactiveEngine():
         'Outdoor_PCE_initial_value' : (0, 25),
         'Perovskite_band_gap' : (1, 3.5),
         'Ref_publication_date' : (min(mainDataFrame['Ref_publication_date']) - relativedelta(months=1), max(mainDataFrame['Ref_publication_date']) + relativedelta(months=1)),
-        'temperature_range_max' : (-80, 160), 
+        'Outdoor_temperature_range' : (-80, 160), 
         }
 
     rangeSliders = {
@@ -1113,7 +1113,7 @@ def interactiveEngine():
         'Outdoor_installation_tilt' : RangeSlider(start=sliderLimits['Outdoor_installation_tilt'][0], end=sliderLimits['Outdoor_installation_tilt'][1], value=(sliderLimits['Outdoor_installation_tilt'][0], sliderLimits['Outdoor_installation_tilt'][1]), step=1, title="Tilt of instalation [deg]"),
         'Outdoor_installation_cardinal_direction' : RangeSlider(start=sliderLimits['Outdoor_installation_cardinal_direction'][0], end=sliderLimits['Outdoor_installation_cardinal_direction'][1], value=(sliderLimits['Outdoor_installation_cardinal_direction'][0], sliderLimits['Outdoor_installation_cardinal_direction'][1]), step=1, title="Cardinal direction"),
         'Outdoor_PCE_initial_value' : RangeSlider(start=sliderLimits['Outdoor_PCE_initial_value'][0], end=sliderLimits['Outdoor_PCE_initial_value'][1], value=(sliderLimits['Outdoor_PCE_initial_value'][0], sliderLimits['Outdoor_PCE_initial_value'][1]), step=1, title="Initial cell efficinecy [%]"),
-        'temperature_range_max' : RangeSlider(start=sliderLimits['temperature_range_max'][0], end=sliderLimits['temperature_range_max'][1], value=(sliderLimits['temperature_range_max'][0], sliderLimits['temperature_range_max'][1]), step=1, title="Temperature (max) [deg. C]"),
+        'Outdoor_temperature_range' : RangeSlider(start=sliderLimits['Outdoor_temperature_range'][0], end=sliderLimits['Outdoor_temperature_range'][1], value=(sliderLimits['Outdoor_temperature_range'][0], sliderLimits['Outdoor_temperature_range'][1]), step=1, title="Temperature (max) [deg. C]"),
         }
 
     sliders = {
@@ -1221,7 +1221,7 @@ def interactiveEngine():
         daterangeSliders['Ref_publication_date'],
         concernignTheMeasurement,        
         rangeSliders['Outdoor_PCE_initial_value'], 
-        rangeSliders['temperature_range_max'],
+        rangeSliders['Outdoor_temperature_range'],
         rangeSliders['Outdoor_installation_tilt'], 
         rangeSliders['Outdoor_installation_cardinal_direction'],       
         multiselects['Outdoor_temperature_load_condition'],
