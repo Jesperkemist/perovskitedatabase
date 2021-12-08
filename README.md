@@ -17,4 +17,3 @@ In the top directory there are two master files
 2. runserver.py
   Runs a Flask application that runs the webpage defined in the Perovskite_webpage_version_1 directory 
 
-3. test
