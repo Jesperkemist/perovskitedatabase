@@ -237,11 +237,19 @@ def make_plot(source, data, view, alphaValue, booleanCategory, colorLabels, curr
 
     if y_scale_select == 'log':
         #p.y_range=Range1d(10**yAxisLogStart, 1.02*max(source.data[y_axis[1]]))
-        p.y_range=Range1d(10**yAxisLogStart, 1.02*max(y_selected[y_axis[1]]))
+        if len(y_selected[y_axis[1]]) > 0:
+            p.y_range=Range1d(10**yAxisLogStart, 1.02*max(y_selected[y_axis[1]]))
+        else:
+            # Default value in case of emty list
+            p.y_range=Range1d(10**yAxisLogStart, 30)
     else:
         #p.y_range=Range1d(0, 1.02*max(source.data[y_axis[1]]))
-        p.y_range=Range1d(0, 1.02*max(y_selected[y_axis[1]]))
-    
+        if len(y_selected[y_axis[1]]) > 0:
+            p.y_range=Range1d(0, 1.02*max(y_selected[y_axis[1]]))
+        else:
+            # Default value in case of emty list
+            p.y_range=Range1d(0, 30)
+            
     if x_axis[1] == 'Ref_publication_date': 
         p.x_range=Range1d(xrange[0], xrange[1])
     elif x_scale_select == 'log':
