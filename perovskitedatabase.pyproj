@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0afbd7f7-e8a1-4781-976c-b1e5a060d1a6</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>bokehServerRun.py</StartupFile>
+    <StartupFile>runserver.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
