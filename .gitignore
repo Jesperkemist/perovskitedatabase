@@ -5,6 +5,7 @@
 
 OldFilesAndTests/*
 venv/*
+venv2/*
 Analysis/*
 Boke_environment/*
 Bokeh_app_1/*
