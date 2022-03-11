@@ -7,7 +7,9 @@ FROM python:3.8-slim
 
 WORKDIR perovskite-webpage
 
-RUN pip install flask==1.1.2 waitress==1.4.4
+# FIXME: the version of the itsdangerous package is fixed due to a bug in the latest version
+#        check whether the website works without fixing the version and, if so, remove it from the next line
+RUN pip install flask==1.1.2 waitress==1.4.4 itsdangerous==2.0.1
 
 COPY . ./Perovskite_webpage_version_1
 
