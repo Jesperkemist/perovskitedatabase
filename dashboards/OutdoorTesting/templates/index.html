@@ -2,9 +2,10 @@
 
 <!-- goes in head -->
 {% block preamble %}
-<style type="text/css">{% include 'styles.css' %}</style>
-<script type="text/javascript">{% include 'resize_observer.js' %}</script>
-<script type="text/javascript">
+    <style type="text/css">{% include 'styles.css' %}</style>
+    <script type="text/javascript">{% include 'loading_spinner_observer.js' %}</script>
+    <script type="text/javascript">{% include 'resize_observer.js' %}</script>
+    <script type="text/javascript">
     // This script sends the height to the host iframe by postMessage
 
     // Set up observer to observe resize of the #main element when the document just loads
@@ -48,11 +49,8 @@
 {% block contents %}
 
 <div id="main">
-    <div id="loaderContainer">
-        <div id="loaderTrigger">
-            {{ embed(roots.loaderTrigger) }}
-        </div>
-        <div id="loader"></div>
+    <div id="loadingSpinnerInvoker">
+        {{ embed(roots.loaderTrigger) }}
     </div>
     <div id="mainComponent">
         {{ embed(roots.main) }}

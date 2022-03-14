@@ -21,10 +21,11 @@ from dashboards.Stability.scripts import stability
 from dashboards.Stability.scripts import categoricalPlots
 
 # from modules.auth import CurrentUser
-from mz_bokeh_package.auth import CurrentUser
+from mz_bokeh_package.utilities import CurrentUser
+from mz_bokeh_package.components import LoadingSpinner
 
 # For autentication
-user_name = CurrentUser.get_user_id()
+user_name = CurrentUser().get_user_id()
 
 #%% Create each of the tabs in the Bokeh application adn add them together
 tab1, tab2, tab3, tab4 = stability.interactiveEngine()
@@ -37,18 +38,12 @@ tabs = Tabs(tabs = [tab1, categorical, tab2, tab3, tab4], name="main")
 curdoc().add_root(tabs)
 
 # ADD LOADING SPINNER
-# add a dummy element that will trigger the event for enabling/disabling the loading spinner
-loader_trigger = Div(text="1", visible = False)
-callback = CustomJS(code="")
-loader_trigger.js_on_change('text', callback)
-curdoc().add_root(column(loader_trigger, name="loaderTrigger"))
+loading_spinner = LoadingSpinner()
+curdoc().add_root(loading_spinner.layout)
 
 # enable/disable loading mode
 def enable_loading_mode(enable: bool):
-    callback.code = f"""
-        document.getElementById('loaderContainer').style.visibility = '{'visible' if enable else 'hidden'}';
-    """
-    loader_trigger.text = str(int(loader_trigger.text) + 1)
+    loading_spinner.enabled = enable
 
 # start loading data only after empty front end has been rendered and loading spinner is visible
 def on_document_ready(event):

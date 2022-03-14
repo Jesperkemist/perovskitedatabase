@@ -1,10 +1,10 @@
 import os
-from mz_bokeh_package.environment import get_environment
+from mz_bokeh_package.utilities import Environment
 
 def databaseConfiguration():
     """Database configuration details"""
 
-    env = get_environment()
+    env = Environment.get_environment()
 
     if env in ('staging', 'production'):
         host = 'localhost'
