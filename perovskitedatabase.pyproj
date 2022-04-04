@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>perovskitedatabase</Name>
     <RootNamespace>perovskitedatabase</RootNamespace>
-    <InterpreterId>CondaEnv|CondaEnv|venv2</InterpreterId>
+    <InterpreterId>MSBuild|venv|$(MSBuildProjectFullPath)</InterpreterId>
     <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
