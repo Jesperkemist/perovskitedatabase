@@ -142,6 +142,13 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
     data['FirstAuthor'] = mainauthor
     data['Journal'] = journal
 
+    # Corect for corupt time data. That menas when date not was extracted from crossref and when the cefault user date not was in a readable date format
+    data['PublicationDate'] = pd.to_datetime(data['Ref_publication_date'], errors="coerce")
+    # Replace corupt values with todays date
+    todays_time = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
+    data['PublicationDate'].fillna(todays_time, inplace=True)
+
+
     return data
 
 def DerivedtUserData(userData, fileName):

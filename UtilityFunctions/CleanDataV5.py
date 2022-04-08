@@ -64,7 +64,7 @@ def cleanUserData(userData, fileName):
 
     #%% Ref. Publication date [year:mm:dd]
     try:
-        # Will later be chcked against crossref with the DOI number
+        # Will later be checked against crossref with the DOI number
         data['Ref_publication_date'] = list(userData['Ref. Publication date [year:mm:dd]'])
     except:
         print(f'Cound not read in: Ref. Publication date [year:mm:dd] from: {fileName}')

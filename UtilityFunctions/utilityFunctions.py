@@ -5,6 +5,7 @@
 # 2020 12
 # =============================================================================
 
+from datetime import datetime
 import os
 
 import pandas as pd
@@ -343,7 +344,10 @@ def dataManipulation(data):
 
     # Time data
     if 'Ref_publication_date' in list(data.columns):
-        data['Ref_publication_date'] = pd.to_datetime(data['Ref_publication_date'])
+        data['Ref_publication_date'] = pd.to_datetime(data['Ref_publication_date'], errors="coerce")
+        # Replace corupt values with todays date
+        todays_time = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
+        data['Ref_publication_date'].fillna(todays_time, inplace=True)
 
     # Extract the higher temperature in the temperature range and add that as a separate column
     if 'Outdoor_temperature_range' in list(data.columns):
