@@ -294,11 +294,11 @@ def interactiveEngine():
         ID = bd_details['bd_key']
 
         # The Ref_ID for all selected cells
-        Cell_ID_numbers = source.data['Ref_ID']
+        #Cell_ID_numbers = source.data['Ref_ID']
 
-        #Cell_ID_numbers = list(mainDataFrame.loc[global_selectedRows]['Ref_ID'])
+        Cell_ID_numbers = list(mainDataFrame.loc[global_selectedRows]['Ref_ID'])
 
-        # Forrmat the Cell_ID_numbers for the SQL query
+        # Format the Cell_ID_numbers for the SQL query
         IDnumbersString = [str(x) for x in Cell_ID_numbers]
         IDnumbersString = '(' + ','.join(IDnumbersString) + ')'
 
@@ -308,7 +308,7 @@ def interactiveEngine():
 
         # Download results
         if len(query_results) != 0:
-            
+
             # Make the data accesible to download
             callback.args['userFilename'] = 'Perovsite database query.csv' 
             callback.args['data'] = query_results.to_csv(header=True, index=False)

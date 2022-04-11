@@ -9,7 +9,7 @@
 import os
 import sys
 
-# Make sure that imports cna be made from teh top folder of the project
+# Make sure that imports can be made from the top folder of the project
 sys.path.append(os.path.abspath(os.getcwd()))
 
 from bokeh.io import curdoc

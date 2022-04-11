@@ -104,7 +104,8 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
                 # Convert datetime string to datetime format
                 date = datetime.strptime(str(date)[1:-1], '%Y, %m, %d').date()
             except:
-                date = pd.to_datetime(defaultDate[i])
+                #date = pd.to_datetime(defaultDate[i])
+                date = pd.to_datetime(defaultDate[i].replace(":", "-"))
                 date = datetime.date(date)
 
             timestamp.append(date)
@@ -127,11 +128,13 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
         except:
 
             try:
-                date = pd.to_datetime(str(defaultDate[i]))
+                #date = pd.to_datetime(str(defaultDate[i]))
+                date = pd.to_datetime(str(defaultDate[i]).replace(":", "-"))
                 date = datetime.date(date)
             except:
                 # Default date
-                date = pd.to_datetime(str(2000))
+                #date = pd.to_datetime(str(2000))
+                date = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
                 date = datetime.date(date)
 
             timestamp.append(date)

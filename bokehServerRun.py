@@ -1,6 +1,7 @@
 # =============================================================================
 # bokehServerRun.py
 # Start a bokehserver running the appliactions in the folder Bokeh_server
+# If run localay go to http://localhost:5006/
 # 
 # By Jesper Jacobsson
 # 2020 07
