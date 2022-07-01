@@ -353,8 +353,8 @@ def interactiveEngine():
         filters7 = dict(zip([sliders[item].title for item in list(sliders.keys())],
                                     [sliders[item].value for item in list(sliders.keys())]))
 
-        filters8 = dict(zip([daterangeSliders[item].title for item in list(daterangeSliders.keys())],
-                                    [daterangeSliders[item].value for item in list(daterangeSliders.keys())]))
+        #filters8 = dict(zip([daterangeSliders[item].title for item in list(daterangeSliders.keys())],
+        #                            [daterangeSliders[item].value for item in list(daterangeSliders.keys())]))
 
         filters9 = dict(zip([textInputControlls[item].title for item in list(textInputControlls.keys())],
                                     [textInputControlls[item].value for item in list(textInputControlls.keys())]))
@@ -367,7 +367,7 @@ def interactiveEngine():
                           'selects' : filters5,
                           'rangeSliders' : filters6,
                           'sliders' : filters7,
-                          'daterangeSliders' : filters8,
+                          #'daterangeSliders' : filters8,
                           'textInputControlls' : filters9,
                           }
 
