@@ -54,7 +54,7 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
     
     for i, DOI in enumerate(DOInumbers):
         # Check if metadata already is downloaded
-        if DOI in listOfSavedDOI or DOI in DOI_saved_files_temp['DOI'].tolist():
+        if DOI in listOfSavedDOI or DOI in DOI_saved_files_temp['DOI'].tolist() or DOI == "nan":
             continue
         else:
             print(f'Searching for citation data for paper on row {i}') # for keeping track of progress during development
@@ -145,8 +145,9 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
     data['FirstAuthor'] = mainauthor
     data['Journal'] = journal
 
-    # Corect for corupt time data. That menas when date not was extracted from crossref and when the cefault user date not was in a readable date format
-    data['PublicationDate'] = pd.to_datetime(data['Ref_publication_date'], errors="coerce")
+    # Corect for corupt time data. That menas when date not was extracted from crossref and when the default user date not was in a readable date format
+    #data['PublicationDate'] = pd.to_datetime(data['Ref_publication_date'], errors="coerce")
+    data['PublicationDate'] = pd.to_datetime(data['PublicationDate'], errors="coerce")
     # Replace corupt values with todays date
     todays_time = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
     data['PublicationDate'].fillna(todays_time, inplace=True)
