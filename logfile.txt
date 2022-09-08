@@ -1,17 +1,13 @@
-Initiated data cleaning procedure for 2021-07-31 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
-Finished data cleaning procedure for 2021-07-31 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
+Initiated data cleaning procedure for 2022-09-07 _v5.xlsx
+Finished data cleaning procedure for 2022-09-07 _v5.xlsx
 Saved cleaned data
-Start to derrive data based on 2021-07-31 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
-Finished to derrive data based on 2021-07-31 Jingshan 2021 06 20 Extraction protocolls version 5_4_v1.xlsx
+Start to derrive data based on 2022-09-07 _v5.xlsx
+Finished to derrive data based on 2022-09-07 _v5.xlsx
 Saved derived data
-Searching for citation data for paper on row 0
-Searching for citation data for paper on row 3
-Searching for citation data for paper on row 4
-Searching for citation data for paper on row 5
 Saved citation data
 Saved compleated data
 -----------------------------------------
 Finished processing user data
-Connection to 146.148.20.38:5432 established
+Connection to localhost:5432 established
 -----------------------------------------
 Finished uploading user data
