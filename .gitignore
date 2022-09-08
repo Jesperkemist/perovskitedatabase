@@ -6,6 +6,7 @@
 OldFilesAndTests/*
 venv/*
 venv2/*
+venv3/*
 pero_database_1/*
 Analysis/*
 Boke_environment/*
@@ -14,6 +15,7 @@ bokeh_apps_20201016/*
 dashboards/__pycache__/*
 dashboards/__pycache__
 dataBaseInteraction/*
+logfile.txt
 
 *.pkl
 
