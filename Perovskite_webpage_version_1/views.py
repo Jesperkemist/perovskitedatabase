@@ -75,7 +75,7 @@ def init_app(app):
         filePath = os.path.join(os.path.abspath(os.getcwd()), 'Perovskite_webpage_version_1', 'static', 'files', fileName)
 
         try:
-            return send_file(filePath, as_attachment = True, attachment_filename=fileName)
+            return send_file(filePath, as_attachment = True, download_name=fileName)
         except Exception as e:
             return str(e)
 
@@ -88,7 +88,7 @@ def init_app(app):
         filePath = os.path.join(os.path.abspath(os.getcwd()), 'Perovskite_webpage_version_1', 'static', 'files', fileName)
 
         try:
-            return send_file(filePath, as_attachment = True, attachment_filename=fileName)
+            return send_file(filePath, as_attachment = True, download_name=fileName)
         except Exception as e:
             return str(e)
 
@@ -101,7 +101,7 @@ def init_app(app):
         filePath = os.path.join(os.path.abspath(os.getcwd()), 'Perovskite_webpage_version_1', 'static', 'files', fileName)
 
         try:
-            return send_file(filePath, as_attachment = True, attachment_filename=fileName)
+            return send_file(filePath, as_attachment = True, download_name=fileName)
         except Exception as e:
             return str(e)
 
