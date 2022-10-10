@@ -7,6 +7,7 @@
 # 2020 05
 # =============================================================================
 
+from datetime import datetime
 import os
 import numpy as np
 import pandas as pd
@@ -45,7 +46,7 @@ def cleanUserData(userData, fileName):
         data['Ref_data_entered_by_author'] = cdf.trueOrFalse(userData['Ref. Data entered by author [TRUE/FALSE]'])
     except:           
         print(f'Cound not read in: Ref. Data entered by author [TRUE/FALSE]')
-        data['Ref_data_entered_by_author'] = ''
+        data['Ref_data_entered_by_author'] = False
 
     #%% Ref. DOI number
     try:
@@ -68,7 +69,7 @@ def cleanUserData(userData, fileName):
         data['Ref_publication_date'] = list(userData['Ref. Publication date [year:mm:dd]'])
     except:
         print(f'Cound not read in: Ref. Publication date [year:mm:dd] from: {fileName}')
-        data['Ref_publication_date'] = pd.to_datetime('')
+        data['Ref_publication_date'] = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
 
     #%% Ref. Free text comment (max 280 characters)
     try:
@@ -96,63 +97,63 @@ def cleanUserData(userData, fileName):
         data['Cell_area_total'] = cdf.numericValues(userData['Cell. Area. Total [cm^2]'])
     except:
         print(f'Cound not read in: Cell. Area. Total [cm^2] from: {fileName}')
-        data['Cell_area_total'] = ''
+        data['Cell_area_total'] = np.nan
         
     #%% Cell. Area. Measured [cm^2]
     try:
         data['Cell_area_measured'] = cdf.numericValues(userData['Cell. Area. Measured [cm^2]'])
     except:
         print(f'Cound not read in: Cell. Area. Measured [cm^2] from: {fileName}')
-        data['Cell_area_measured'] = ''
+        data['Cell_area_measured'] = np.nan
 
     #%% Cell. Number of cells per substrate
     try:
         data['Cell_number_of_cells_per_substrate'] = cdf.numericInteger(userData['Cell. Number of cells per substrate'], default = 0)
     except:
         print(f'Cound not read in: Cell. Number of cells per substrate from: {fileName}')
-        data['Cell_number_of_cells_per_substrate'] = ''
+        data['Cell_number_of_cells_per_substrate'] = 0
 
     #%% Cell. Architecture [nip/pin/ …]
     try:
         data['Cell_architecture'] = cdf.architecture(userData['Cell. Architecture [nip/pin/ …]'])
     except: 
         print(f'Cound not read in: Cell. Architecture [nip/pin/ …] from: {fileName}')
-        data['Cell_architecture'] = ''
+        data['Cell_architecture'] = 'Unknown'
 
     #%% Cell. Flexible [TRUE/FALSE]
     try:
         data['Cell_flexible'] = cdf.trueOrFalse(userData['Cell. Flexible [TRUE/FALSE]'])
     except:
         print(f'Cound not read in: Cell. Flexible [TRUE/FALSE] from: {fileName}')
-        data['Cell_flexible'] = ''
+        data['Cell_flexible'] = False
 
     #%% Cell. Flexible. Minimum bending radius [cm]
     try:
         data['Cell_flexible_min_bending_radius'] = cdf.numericValues(userData['Cell. Flexible. Minimum bending radius [cm]'])
     except:
         print(f'Cound not read in: Cell. Flexible. Minimum bending radius [cm] from: {fileName}')
-        data['Cell_flexible_min_bending_radius'] = ''
+        data['Cell_flexible_min_bending_radius'] = np.nan
 
     #%% Cell. Semitransparent [TRUE/FALSE]
     try:
         data['Cell_semitransparent'] = cdf.trueOrFalse(userData['Cell. Semitransparent [TRUE/FALSE]'])
     except:
         print(f'Cound not read in: Cell. Semitransparent [TRUE/FALSE] from: {fileName}')
-        data['Cell_semitransparent'] = ''      
+        data['Cell_semitransparent'] = False      
 
     #%% Cell. Semitransparent. Average visible transmittance [%]
     try:
         data['Cell_semitransparent_AVT'] = cdf.numericValues(userData['Cell. Semitransparent. Average visible transmittance [%]'])
     except:
         print(f'Cound not read in: Cell. Semitransparent. Average visible transmittance [%] from: {fileName}')
-        data['Cell_semitransparent_AVT'] = ''
+        data['Cell_semitransparent_AVT'] = np.nan
 
     #%% Cell. Semitransparent. Average visible transmittance. Wavelength range [lambda_min; lambda_max]
     try:
         data['Cell_semitransparent_wavelength_range'] = cdf.numberHighLowOrConstant(userData['Cell. Semitransparent. Average visible transmittance. Wavelength range [lambda_min; lambda_max]'])
     except: 
         print(f'Cound not read in: Cell. Semitransparent. Average visible transmittance. Wavelength range [lambda_min; lambda_max] from: {fileName}')
-        data['Cell_semitransparent_wavelength_range'] = ''
+        data['Cell_semitransparent_wavelength_range'] = 'nan; nan'
    
     #%% Cell. Semitransparent. Transmittance. Link. Raw data
     try:
@@ -166,35 +167,35 @@ def cleanUserData(userData, fileName):
         data['Module'] = cdf.trueOrFalse(userData['Module [TRUE/FALSE]'])
     except:
         print(f'Cound not read in: Module [TRUE/FALSE] from: {fileName}')
-        data['Module'] = ''  
+        data['Module'] = False  
 
     #%% Module. Number of cells in module
     try:
         data['Module_number_of_cells_in_module'] = cdf.numericInteger(userData['Module. Number of cells in module'], default = 0)
     except:
         print(f'Cound not read in:Module. Number of cells in module: {fileName}')
-        data['Module_number_of_cells_in_module'] = ''
+        data['Module_number_of_cells_in_module'] = 0
 
     #%% Module. Area. Total [cm^2] 
     try:
         data['Module_area_total'] = cdf.numericValues(userData['Module. Area. Total [cm^2]'])
     except:
         print(f'Cound not read in: Module. Area. Total [cm^2] from: {fileName}')
-        data['Module_area_total'] = ''
+        data['Module_area_total'] = np.nan
 
     #%% Module. Area. Effective [cm^2]
     try:
         data['Module_area_effective'] = cdf.numericValues(userData['Module. Area. Effective [cm^2]'])
     except:
         print(f'Cound not read in: Module. Area. Effective [cm^2] from: {fileName}')
-        data['Module_area_effective'] = ''
+        data['Module_area_effective'] = np.nan
 
     #%% Module. JV data recalculated per cell [TRUE/FALSE]
     try:
         data['Module_JV_data_recalculated_per_cell'] = cdf.trueOrFalse(userData['Module. JV data recalculated per cell [TRUE/FALSE]'])
     except:
         print(f'Cound not read in: Module. JV data recalculated per cell [TRUE/FALSE] from: {fileName}')
-        data['Module_JV_data_recalculated_per_cell'] = '' 
+        data['Module_JV_data_recalculated_per_cell'] = False 
 
     #%% Substrate. Stack sequence [Mat.1; Mat.2; ... | Mat.3; ... | Mat.4 | ...]
     try:
@@ -215,7 +216,7 @@ def cleanUserData(userData, fileName):
         data['Substrate_area'] = cdf.numericValues(userData['Substrate. Area [cm^2]'])
     except:
         print(f'Cound not read in: Substrate. Area [cm^2] from: {fileName}')
-        data['Substrate_area'] = ''
+        data['Substrate_area'] = np.nan
 
     #%% Substrate. Supplier
     try:
@@ -243,7 +244,7 @@ def cleanUserData(userData, fileName):
         data['Substrate_surface_roughness_rms'] = cdf.numericValues(userData['Substrate. Surface roughness. Rms [nm]'])
     except:
         print(f'Cound not read in: Substrate. Surface roughness. Rms [nm] from: {fileName}')
-        data['Substrate_surface_roughness_rms'] = ''
+        data['Substrate_surface_roughness_rms'] = np.nan
 
     #%% Substrate. Etching procedure
     try:
@@ -439,7 +440,7 @@ def cleanUserData(userData, fileName):
         data['ETL_storage_time_until_next_deposition_step'] = cdf.numericValues(userData['ETL. Storage. Time until next deposition step [h]'])
     except: 
         print(f'Cound not read in: ETL. Storage. Time until next deposition_step [h] from: {fileName}')
-        data['ETL_storage_time_until_next_deposition_step'] = ''
+        data['ETL_storage_time_until_next_deposition_step'] = np.nan
 
     #%% ETL. Storage. Atmosphere [Gas1; Gas2; ...]
     try:
@@ -453,7 +454,7 @@ def cleanUserData(userData, fileName):
         data['ETL_storage_relative_humidity'] = cdf.numericValues(userData['ETL. Storage. Relative humidity [%]'])
     except: 
         print(f'Cound not read in: ETL. Storage. Relative humidity [%] from: {fileName}')
-        data['ETL_storage_relative_humidity'] = ''
+        data['ETL_storage_relative_humidity'] = np.nan
 
     #%% ETL. Surface treatment before next depositionstep 
     try:
@@ -467,42 +468,42 @@ def cleanUserData(userData, fileName):
         data['Perovskite_single_crystal'] = cdf.trueOrFalse(userData['Perovskite. Single crystal [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Single crystal [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_single_crystal'] = ''
+        data['Perovskite_single_crystal'] = False
 
     #%% Perovskite. Dimension. 0D (Quantum dot) [TRUE/FALSE] 
     try:
         data['Perovskite_dimension_0D'] = cdf.trueOrFalse(userData['Perovskite. Dimension. 0D (Quantum dot) [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Dimension. 0D (Quantum dot) [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_dimension_0D'] = ''
+        data['Perovskite_dimension_0D'] = False
 
     #%% Perovskite. Dimension. 2D [TRUE/FALSE]
     try:
         data['Perovskite_dimension_2D'] = cdf.trueOrFalse(userData['Perovskite. Dimension. 2D [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Dimension. 2D [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_dimension_2D'] = ''
+        data['Perovskite_dimension_2D'] = False
 
     #%% Perovskite. Dimension. 2D/3D mixture [TRUE/FALSE]
     try:
         data['Perovskite_dimension_2D3D_mixture'] = cdf.trueOrFalse(userData['Perovskite. Dimension. 2D/3D mixture [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Dimension. 2D/3D mixture [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_dimension_2D3D_mixture'] = ''
+        data['Perovskite_dimension_2D3D_mixture'] = False
 
     #%% Perovskite. Dimension. 3D [TRUE/FALSE]
     try:
         data['Perovskite_dimension_3D'] = cdf.trueOrFalse(userData['Perovskite. Dimension. 3D [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Dimension. 23D [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_dimension_3D'] = ''
+        data['Perovskite_dimension_3D'] = False
 
     #%% Perovskite. Dimension. 3D with 2D capping layer [TRUE/FALSE]
     try:
         data['Perovskite_dimension_3D_with_2D_capping_layer'] = cdf.trueOrFalse(userData['Perovskite. Dimension. 3D with 2D capping layer [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Dimension. 3D with 2D capping layer [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_dimension_3D_with_2D_capping_layer'] = ''
+        data['Perovskite_dimension_3D_with_2D_capping_layer'] = False
 
     #%% Perovskite. Dimension. List of layers [Dim.1 | Dim.2 | …]
     try:
@@ -516,14 +517,14 @@ def cleanUserData(userData, fileName):
         data['Perovskite_composition_perovskite_ABC3_structure'] = cdf.trueOrFalse(userData['Perovskite. Composition. Perovskite ABC3 structure [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Composition. Perovskite ABC3 structure [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_composition_perovskite_ABC3_structure'] = ''
+        data['Perovskite_composition_perovskite_ABC3_structure'] = False
 
     #%% Perovskite. Composition. Perovskite inspired structure [TRUE/FALSE] 
     try:
         data['Perovskite_composition_perovskite_inspired_structure'] = cdf.trueOrFalse(userData['Perovskite. Composition. Perovskite inspired structure [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Composition. Perovskite inspired structure [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_composition_perovskite_inspired_structure'] = ''
+        data['Perovskite_composition_perovskite_inspired_structure'] = False
 
     #%% Perovskite. Composition. A-ions [Ion.1; Ion.2; … | Ion.3; … | ...]
     try:
@@ -586,14 +587,14 @@ def cleanUserData(userData, fileName):
         data['Perovskite_composition_inorganic'] = cdf.trueOrFalse(userData['Perovskite. Composition. Inorganic perovskite [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Composition. Inorganic perovskite [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_composition_inorganic'] = ''
+        data['Perovskite_composition_inorganic'] = False
 
     #%% Perovskite. Composition. Lead free [TRUE/FALSE]
     try:
         data['Perovskite_composition_leadfree'] = cdf.trueOrFalse(userData['Perovskite. Composition. Lead free [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Composition. Lead free [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_composition_leadfree'] = ''
+        data['Perovskite_composition_leadfree'] = False
 
     #%% Perovskite. Additives. Compounds [Addt.1; Addt.2; ... | Addt.3; … | Addt.4 | ... ]
     try:
@@ -649,7 +650,7 @@ def cleanUserData(userData, fileName):
         data['Perovskite_deposition_number_of_deposition_steps'] = cdf.numericInteger(userData['Perovskite. Deposition. Number of deposition steps'], default = 0)
     except: 
         print(f'Cound not read in: Perovskite. Deposition. Number of deposition steps from: {fileName}')
-        data['Perovskite_deposition_number_of_deposition_steps'] = ''
+        data['Perovskite_deposition_number_of_deposition_steps'] = 0
 
     #%% Perovskite. Deposition. Procedure [Proc. 1 >> Proc. 2 >> ... | Proc. 3 >> … | Proc. 4 | ... ]
     try:
@@ -782,7 +783,7 @@ def cleanUserData(userData, fileName):
         data['Perovskite_deposition_quenching_induced_crystallisation'] = cdf.trueOrFalse(userData['Perovskite. Deposition. Quenching induced crystallisation [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Deposition. Quenching induced crystallisation [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_deposition_quenching_induced_crystallisation'] = ''
+        data['Perovskite_deposition_quenching_induced_crystallisation'] = False
 
     #%% Perovskite. Deposition. Quenching media [Sol.1; Sol.2; …]
     try:
@@ -859,7 +860,7 @@ def cleanUserData(userData, fileName):
         data['Perovskite_deposition_solvent_annealing'] = cdf.trueOrFalse(userData['Perovskite. Deposition. Solvent annealing [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Perovskite. Deposition. Solvent annealing [TRUE/FALSE] from: {fileName}')
-        data['Perovskite_deposition_solvent_annealing'] = ''
+        data['Perovskite_deposition_solvent_annealing'] = False
 
     #%% Perovskite. Deposition. Solvent annealing. Time vs thermal annealing [Before/Under/After/...]
     try:
@@ -1342,7 +1343,7 @@ def cleanUserData(userData, fileName):
         data['Add_lay_front'] = cdf.trueOrFalse(userData['Add. Lay. Front [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Add. Lay. Front [TRUE/FALSE] from: {fileName}')
-        data['Add_lay_front'] = ''
+        data['Add_lay_front'] = False
 
     #%% Add. Lay. Front. Function [A.R.C./Upconversion/Down conversion/Back reflection/ ...]
     try:
@@ -1559,7 +1560,7 @@ def cleanUserData(userData, fileName):
         data['Add_lay_back'] = cdf.trueOrFalse(userData['Add. Lay. Back [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Add. Lay. Back [TRUE/FALSE] from: {fileName}')
-        data['Add_lay_back'] = ''
+        data['Add_lay_back'] = False
 
     #%% Add. Lay. Back. Function [A.R.C./Upconversion/Down conversion/Back reflection/ ...]
     try:
@@ -1776,7 +1777,7 @@ def cleanUserData(userData, fileName):
         data['Encapsulation'] = cdf.trueOrFalse(userData['Encapsulation [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Encapsulation [TRUE/FALSE] from: {fileName}')
-        data['Encapsulation'] = ''
+        data['Encapsulation'] = False
 
     #%% Encapsulation. Stack sequence [Mat.1; Mat.2; ... | Mat.3; ... | Mat.4 | ...]
     try:
@@ -1818,21 +1819,21 @@ def cleanUserData(userData, fileName):
         data['JV_measured'] = cdf.trueOrFalse(userData['JV. Measured [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: JV. Measured [TRUE/FALSE] from: {fileName}')
-        data['JV_measured'] = ''
+        data['JV_measured'] = True
 
     #%% JV. Average over N number of cells
     try:
         data['JV_average_over_n_number_of_cells'] = cdf.numericInteger(userData['JV. Average over N number of cells'], default = 1)
     except: 
         print(f'Cound not read in: JV. Average over N number of cells from: {fileName}')
-        data['JV_average_over_n_number_of_cells'] = ''
+        data['JV_average_over_n_number_of_cells'] = 1
 
     #%% JV. Certified values [TRUE/FALSE]
     try:
         data['JV_certified_values'] = cdf.trueOrFalse(userData['JV. Certified values [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: JV. Certified values [TRUE/FALSE] from: {fileName}')
-        data['JV_certified_values'] = ''
+        data['JV_certified_values'] = False
 
     #%% JV. Certification Institute
     try:
@@ -1874,14 +1875,14 @@ def cleanUserData(userData, fileName):
         data['JV_test_relative_humidity'] = cdf.numericValues(userData['JV. Test. Relative humidity [%]'])
     except: 
         print(f'Cound not read in: JV. Test. Relative humidity [%] from: {fileName}')
-        data['JV_test_relative_humidity'] = ''
+        data['JV_test_relative_humidity'] = np.nan
  
     #%% JV. Test. Temperature [deg. C]
     try:
         data['JV_test_temperature'] = cdf.numericValues(userData['JV. Test. Temperature [deg. C]'])
     except: 
         print(f'Cound not read in: JV. Test. Temperature [deg. C] from: {fileName}')
-        data['JV_test_temperature'] = ''      
+        data['JV_test_temperature'] = np.nan     
         
     #%% JV. Light source. Type [Dark/White LED/Metal halide/ ...]
     try:
@@ -1909,7 +1910,7 @@ def cleanUserData(userData, fileName):
         data['JV_light_intensity'] = cdf.numericValues(userData['JV. Light. Intensity [mW/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Light. Intensity [mW/cm^2] from: {fileName}')
-        data['JV_light_intensity'] = ''
+        data['JV_light_intensity'] = 100
 
     #%% JV. Light. Spectra [AM 1.5/UVA/UVB/Monochromatic/ …]
     try:
@@ -1937,42 +1938,42 @@ def cleanUserData(userData, fileName):
         data['JV_light_masked_cell'] = cdf.trueOrFalse(userData['JV. Light. Masked cell [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: JV. Light. Masked cell [TRUE/FALSE] from: {fileName}')
-        data['JV_light_masked_cell'] = ''
+        data['JV_light_masked_cell'] = False
 
     #%% JV. Light. Mask area [cm^2]
     try:
         data['JV_light_mask_area'] = cdf.numericValues(userData['JV. Light. Mask area [cm^2]'])
     except: 
         print(f'Cound not read in: JV. Light. Mask area [cm^2] from: {fileName}')
-        data['JV_light_mask_area'] = ''
+        data['JV_light_mask_area'] = np.nan
 
     #%% JV. Scan. Speed [mV/s]
     try:
         data['JV_scan_speed'] = cdf.numericValues(userData['JV. Scan. Speed [mV/s]'])
     except: 
         print(f'Cound not read in: JV. Scan. Speed [mV/s] from: {fileName}')
-        data['JV_scan_speed'] = ''
+        data['JV_scan_speed'] = np.nan
 
     #%% JV. Scan. Delay time [ms]
     try:
         data['JV_scan_delay_time'] = cdf.numericValues(userData['JV. Scan. Delay time [ms]'])
     except: 
         print(f'Cound not read in: JV. Scan. Delay time [ms] from: {fileName}')
-        data['JV_scan_delay_time'] = ''
+        data['JV_scan_delay_time'] = np.nan
 
     #%% JV. Scan. Integration time [ms]
     try:
         data['JV_scan_integration_time'] = cdf.numericValues(userData['JV. Scan. Integration time [ms]'])
     except: 
         print(f'Cound not read in: JV. Scan. Integration time [ms] from: {fileName}')
-        data['JV_scan_integration_time'] = ''
+        data['JV_scan_integration_time'] = np.nan
 
     #%% JV. Scan. Voltage step [mV]
     try:
         data['JV._scan_voltage_step'] = cdf.numericValues(userData['JV. Scan. Voltage step [mV]'])
     except: 
         print(f'Cound not read in: JV. Scan. Voltage step [mV] from: {fileName}')
-        data['_scan_voltage_step'] = ''
+        data['_scan_voltage_step'] = np.nan
 
     #%% JV. Preconditioning. Protocol [none/Light soaking/Potential biasing/ …]
     try:
@@ -1986,133 +1987,133 @@ def cleanUserData(userData, fileName):
         data['JV_preconditioning_time'] = cdf.numericValues(userData['JV. Preconditioning. Time [s]'])
     except: 
         print(f'Cound not read in: JV. Preconditioning. Time [s] from: {fileName}')
-        data['JV_preconditioning_time'] = ''
+        data['JV_preconditioning_time'] = np.nan
 
     #%% JV. Preconditioning. Potential [V]
     try:
         data['JV_preconditioning_potential'] = cdf.numericValues(userData['JV. Preconditioning. Potential [V]'])
     except: 
         print(f'Cound not read in: JV. Preconditioning. Potential [V] from: {fileName}')
-        data['JV_preconditioning_potential'] = ''
+        data['JV_preconditioning_potential'] = np.nan
 
     #%% JV. Preconditioning. Light intensity [mW/cm^2]
     try:
         data['JV_preconditioning_light_intensity'] = cdf.numericValues(userData['JV. Preconditioning. Light intensity [mW/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Preconditioning. Light intensity [mW/cm^2] from: {fileName}')
-        data['JV_preconditioning_light_intensity'] = ''
+        data['JV_preconditioning_light_intensity'] = np.nan
 
     #%% JV. Reverse scan. Voc [V]
     try:
         data['JV_reverse_scan_Voc'] = cdf.VocData(userData['JV. Reverse scan. Voc [V]'], mV_to_V_cutoff = 10)
     except: 
         print(f'Cound not read in: JV. Reverse scan. Voc [V] from: {fileName}')
-        data['JV_reverse_scan_Voc'] = ''
+        data['JV_reverse_scan_Voc'] = np.nan
 
     #%% JV. Reverse scan. Jsc [mA/cm^2]
     try:
         data['JV_reverse_scan_Jsc'] = cdf.JscData(userData['JV. Reverse scan. Jsc [mA/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Reverse scan. Jsc [mA/cm^2] from: {fileName}')
-        data['JV_reverse_scan_Jsc'] = ''
+        data['JV_reverse_scan_Jsc'] = np.nan
 
     #%% JV. Reverse scan. FF [number between 0 and 1]
     try:
         data['JV_reverse_scan_FF'] = cdf.FFData(userData['JV. Reverse scan. FF [number between 0 and 1]'], FF_cutoff = 5)
     except: 
         print(f'Cound not read in: JV. Reverse scan. FF [number between 0 and 1] from: {fileName}')
-        data['JV_reverse_scan_FF'] = ''
+        data['JV_reverse_scan_FF'] = np.nan
 
     #%% JV. Reverse scan. PCE [%]
     try:
         data['JV_reverse_scan_PCE'] = cdf.PCEData(userData['JV. Reverse scan. PCE [%]'])
     except: 
         print(f'Cound not read in: JV. Reverse scan. PCE [%] from: {fileName}')
-        data['JV_reverse_scan_PCE'] = ''
+        data['JV_reverse_scan_PCE'] = np.nan
 
     #%% JV. Reverse scan. Vmp [V]
     try:
         data['JV_reverse_scan_Vmp'] = cdf.VocData(userData['JV. Reverse scan. Vmp [V]'], mV_to_V_cutoff = 10)
     except: 
         print(f'Cound not read in: JV. Reverse scan. Vmp [V] from: {fileName}')
-        data['JV_reverse_scan_Vmp'] = ''
+        data['JV_reverse_scan_Vmp'] = np.nan
 
     #%% JV. Reverse scan. Jmp [mA/cm^2]
     try:
         data['JV_reverse_scan_Jmp'] = cdf.JscData(userData['JV. Reverse scan. Jmp [mA/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Reverse scan. Jmp [mA/cm^2] from: {fileName}')
-        data['JV_reverse_scan_Jmp'] = ''
+        data['JV_reverse_scan_Jmp'] = np.nan
 
     #%% JV. Reverse scan. Series resistance [ohmcm^2]
     try:
         data['JV_reverse_scan_series_resistance'] = cdf.numericValues(userData['JV. Reverse scan. Series resistance [ohmcm^2]'])
     except: 
         print(f'Cound not read in: JV. Reverse scan. Series resistance [ohmcm^2] from: {fileName}')
-        data['JV_reverse_scan_series_resistance'] = ''
+        data['JV_reverse_scan_series_resistance'] = np.nan
 
     #%% JV. Reverse scan. Shunt resistance [ohmcm^2]
     try:
         data['JV_reverse_scan_shunt_resistance'] = cdf.numericValues(userData['JV. Reverse scan. Shunt resistance [ohmcm^2]'])
     except: 
         print(f'Cound not read in: JV. Reverse scan. Shunt resistance [ohmcm^2] from: {fileName}')
-        data['JV_reverse_scan_shunt_resistance'] = ''
+        data['JV_reverse_scan_shunt_resistance'] = np.nan
 
     #%% JV. Forward scan. Voc [V]
     try:
         data['JV_forward_scan_Voc'] = cdf.VocData(userData['JV. Forward scan. Voc [V]'], mV_to_V_cutoff = 10)
     except: 
         print(f'Cound not read in: JV. Forward scan. Voc [V] from: {fileName}')
-        data['JV_forward_scan_Voc'] = ''
+        data['JV_forward_scan_Voc'] = np.nan
 
     #%% JV. Forward scan. Jsc [mA/cm^2]
     try:
         data['JV_forward_scan_Jsc'] = cdf.JscData(userData['JV. Forward scan. Jsc [mA/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Forward scan. Jsc [mA/cm^2] from: {fileName}')
-        data['JV_forward_scan_Jsc'] = ''
+        data['JV_forward_scan_Jsc'] = np.nan
 
     #%% JV. Forward scan. FF [number between 0 and 1]
     try:
         data['JV_forward_scan_FF'] = cdf.FFData(userData['JV. Forward scan. FF [number between 0 and 1]'], FF_cutoff = 5)
     except: 
         print(f'Cound not read in: JV. Forward scan. FF [number between 0 and 1] from: {fileName}')
-        data['JV_forward_scan_FF'] = ''
+        data['JV_forward_scan_FF'] = np.nan
 
     #%% JV. Forward scan. PCE [%]
     try:
         data['JV_forward_scan_PCE'] = cdf.PCEData(userData['JV. Forward scan. PCE [%]'])
     except: 
         print(f'Cound not read in: JV. Forward scan. PCE [%] from: {fileName}')
-        data['JV_forward_scan_PCE'] = ''
+        data['JV_forward_scan_PCE'] = np.nan
 
     #%% JV. Forward scan. Vmp [V]
     try:
         data['JV_forward_scan_Vmp'] = cdf.VocData(userData['JV. Forward scan. Vmp [V]'], mV_to_V_cutoff = 10)
     except: 
         print(f'Cound not read in: JV. Forward scan. Vmp [V] from: {fileName}')
-        data['JV_forward_scan_Vmp'] = ''
+        data['JV_forward_scan_Vmp'] = np.nan
 
     #%% JV. Forward scan. Jmp [mA/cm^2]
     try:
         data['JV_forward_scan_Jmp'] = cdf.JscData(userData['JV. Forward scan. Jmp [mA/cm^2]'])
     except: 
         print(f'Cound not read in: JV. Forward scan. Jmp [mA/cm^2] from: {fileName}')
-        data['JV_forward_scan_Jmp'] = ''
+        data['JV_forward_scan_Jmp'] = np.nan
 
     #%% JV. Forward scan. Series resistance [ohmcm^2]
     try:
         data['JV_forward_scan_series_resistance'] = cdf.numericValues(userData['JV. Forward scan. Series resistance [ohmcm^2]'])
     except: 
         print(f'Cound not read in: JV. Forward scan. Series resistance [ohmcm^2] from: {fileName}')
-        data['JV_forward_scan_series_resistance'] = ''
+        data['JV_forward_scan_series_resistance'] = np.nan
 
     #%% JV. Forward scan. Shunt resistance [ohmcm^2]
     try:
         data['JV_forward_scan_shunt_resistance'] = cdf.numericValues(userData['JV. Forward scan. Shunt resistance [ohmcm^2]'])
     except: 
         print(f'Cound not read in: JV. Forward scan. Shunt resistance [ohmcm^2] from: {fileName}')
-        data['JV_forward_scan_shunt_resistance'] = ''
+        data['JV_forward_scan_shunt_resistance'] = np.nan
 
     #%% JV. Link. Raw data
     try:
@@ -2126,7 +2127,7 @@ def cleanUserData(userData, fileName):
         data['Stabilised_performance_measured'] = cdf.trueOrFalse(userData['Stabilised performance. Measured [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Stabilised performance. Measured [TRUE/FALSE] from: {fileName}')
-        data['Stabilised_performance_measured'] = ''
+        data['Stabilised_performance_measured'] = False
 
     #%% Stabilised performance. Procedure [MPPT/Constant potential/Constant current/ …]
     try:
@@ -2147,28 +2148,28 @@ def cleanUserData(userData, fileName):
         data['Stabilised_performance_measurement_time'] = cdf.numericValues(userData['Stabilised performance. Measurement time [min]'])
     except: 
         print(f'Cound not read in: Stabilised performance. Measurement time [min] from: {fileName}')
-        data['Stabilised_performance_measurement_time'] = ''
+        data['Stabilised_performance_measurement_time'] = np.nan
 
     #%% Stabilised performance. PCE [%]
     try:
         data['Stabilised_performance_PCE'] = cdf.PCEData(userData['Stabilised performance. PCE [%]'])
     except: 
         print(f'Cound not read in: Stabilised performance. PCE [%] from: {fileName}')
-        data['Stabilised_performance_PCE'] = ''
+        data['Stabilised_performance_PCE'] = np.nan
 
     #%% Stabilised performance. Vmp [V]
     try:
         data['Stabilised_performance_Vmp'] = cdf.VocData(userData['Stabilised performance. Vmp [V]'], mV_to_V_cutoff = 10)
     except: 
         print(f'Cound not read in: Stabilised performance. Vmp [V] from: {fileName}')
-        data['Stabilised_performance_Vmp'] = ''
+        data['Stabilised_performance_Vmp'] = np.nan
 
     #%% Stabilised performance. Jmp [mA/cm^2]
     try:
         data['Stabilised_performance_Jmp'] = cdf.JscData(userData['Stabilised performance. Jmp [mA/cm^2]'])
     except: 
         print(f'Cound not read in: Stabilised performance. Jmp [mA/cm^2] from: {fileName}')
-        data['Stabilised_performance_Jmp'] = ''
+        data['Stabilised_performance_Jmp'] = np.nan
 
     #%% Stabilised performance. Link. Raw data
     try:
@@ -2182,21 +2183,21 @@ def cleanUserData(userData, fileName):
         data['EQE_measured'] = cdf.trueOrFalse(userData['EQE. Measured [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: EQE. Measured [TRUE/FALSE] from: {fileName}')
-        data['EQE_measured'] = ''
+        data['EQE_measured'] = False
 
     #%% EQE. Light bias [mW/cm^2]
     try:
         data['EQE_light_bias'] = cdf.numericValues(userData['EQE. Light bias [mW/cm^2]'])
     except: 
         print(f'Cound not read in: EQE. Light bias [mW/cm^2] from: {fileName}')
-        data['EQE_light_bias'] = ''
+        data['EQE_light_bias'] = np.nan
 
     #%% EQE. Integrated Jsc [mA/cm^2]
     try:
         data['EQE_integrated_Jsc'] = cdf.JscData(userData['EQE. Integrated Jsc [mA/cm^2]'])
     except: 
         print(f'Cound not read in: EQE. Integrated Jsc [mA/cm^2] from: {fileName}')
-        data['EQE_integrated_Jsc'] = ''
+        data['EQE_integrated_Jsc'] = np.nan
 
     #%% EQE. Link. Raw data
     try:
@@ -2210,7 +2211,7 @@ def cleanUserData(userData, fileName):
         data['Stability_measured'] = cdf.trueOrFalse(userData['Stability. Measured [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Stability. Measured [TRUE/FALSE] from: {fileName}')
-        data['Stability_measured'] = ''
+        data['Stability_measured'] = False
 
     #%% Stability. Protocol [ISOS x/IEC x/ …]
     try:
@@ -2224,7 +2225,7 @@ def cleanUserData(userData, fileName):
         data['Stability_average_over_n_number_of_cells'] = cdf.numericInteger(userData['Stability. Average over N number of cells'], default = 1)
     except: 
         print(f'Cound not read in: Stability. Average over N number of cells from: {fileName}')
-        data['Stability_average_over_n_number_of_cells'] = ''
+        data['Stability_average_over_n_number_of_cells'] = 1
     
     #%% Stability. Light source. Type [Dark/White LED/Metal halide/ ...]
     try:
@@ -2252,7 +2253,7 @@ def cleanUserData(userData, fileName):
         data['Stability_light_intensity'] = cdf.numericValues(userData['Stability. Light. Intensity [mW/cm^2]'])
     except: 
         print(f'Cound not read in: Stability. Light. Intensity [mW/cm^2] from: {fileName}')
-        data['Stability_light_intensity'] = ''
+        data['Stability_light_intensity'] = np.nan
 
     #%% Stability. Light. Spectra [AM 1.5/UVA/UVB/Monochromatic/ …]
     try:
@@ -2294,7 +2295,7 @@ def cleanUserData(userData, fileName):
         data['Stability_light_UV_filter'] = cdf.trueOrFalse(userData['Stability. Light. UV filter [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Stability. Light. UV filter [TRUE/FALSE] from: {fileName}')
-        data['Stability_light_UV_filter'] = ''
+        data['Stability_light_UV_filter'] = False
 
     #%% Stability. Potential bias. Load condition [Open circuit/MPPT/Constant potential/ …]
     try:
@@ -2315,7 +2316,7 @@ def cleanUserData(userData, fileName):
         data['Stability_potential_bias_passive_resistance'] = cdf.numericValues(userData['Stability. Potential bias. Passive resistance [ohm]'])
     except: 
         print(f'Cound not read in: Stability. Potential bias. Passive resistance [ohm] from: {fileName}')
-        data['Stability_potential_bias_passive_resistance'] = ''
+        data['Stability_potential_bias_passive_resistance'] = np.nan
 
     #%% Stability. Temperature. Load condition [Constant/Uncontrolled/Cycled/ ...]
     try:
@@ -2343,7 +2344,7 @@ def cleanUserData(userData, fileName):
         data['Stability_temperature_ramp_speed'] = cdf.numericValues(userData['Stability. Temperature. Ramp speed [deg. C/min]'])
     except: 
         print(f'Cound not read in: Stability. Stability. Temperature. Ramp speed [deg. C/min] from: {fileName}')
-        data['Stability_temperature_ramp_speed'] = ''
+        data['Stability_temperature_ramp_speed'] = np.nan
 
     #%% Stability. Atmosphere [Gas1; Gas2; ...]
     try:
@@ -2357,7 +2358,7 @@ def cleanUserData(userData, fileName):
         data['Stability_atmosphere_oxygen_concentration'] = cdf.numericValues(userData['Stability. Atmosphere. Oxygen concentration [%]'])
     except: 
         print(f'Cound not read in: Stability. Atmosphere. Oxygen concentration [%] from: {fileName}')
-        data['Stability_atmosphere_oxygen_concentration'] = ''
+        data['Stability_atmosphere_oxygen_concentration'] = np.nan
 
     #%% Stability. Relative humidity. Load conditions [Ambient/Controlled/Cycled/ …]
     try:
@@ -2378,21 +2379,21 @@ def cleanUserData(userData, fileName):
         data['Stability_relative_humidity_average_value'] = cdf.numericValues(userData['Stability. Relative humidity. Average value [%]'])
     except: 
         print(f'Cound not read in: Stability. Relative humidity. Average value [%] from: {fileName}')
-        data['Stability_relative_humidity_average_value'] = ''
+        data['Stability_relative_humidity_average_value'] = np.nan
 
     #%% Stability. Time. Total exposure [h]
     try:
         data['Stability_time_total_exposure'] = cdf.numericValues(userData['Stability. Time. Total exposure [h]'])
     except: 
         print(f'Cound not read in: Stability. Time. Total exposure [h] from: {fileName}')
-        data['Stability_time_total_exposure'] = '' 
+        data['Stability_time_total_exposure'] = np.nan 
         
     #%% Stability. Periodic JV measurements [TRUE/FALSE]
     try:
         data['Stability_periodic_JV_measurements'] = cdf.trueOrFalse(userData['Stability. Periodic JV measurements [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Stability. Periodic JV measurements [TRUE/FALSE] from: {fileName}')
-        data['Stability_periodic_JV_measurements'] = ''
+        data['Stability_periodic_JV_measurements'] = False
 
     #%% Stability. Periodic JV measurements. Time between measurements [h]
     try:
@@ -2406,105 +2407,105 @@ def cleanUserData(userData, fileName):
         data['Stability_PCE_initial_value'] = cdf.numericValues(userData['Stability. PCE. Initial value [%]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Initial value [%] from: {fileName}')
-        data['Stability_PCE_initial_value'] = ''
+        data['Stability_PCE_initial_value'] = np.nan
   
     #%% Stability. PCE. Burn in observed [TRUE/FALSE]
     try:
         data['Stability_PCE_burn_in_observed'] = cdf.trueOrFalse(userData['Stability. PCE. Burn in observed [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Burn in observed [TRUE/FALSE] from: {fileName}')
-        data['Stability_PCE_burn_in_observed'] = ''
+        data['Stability_PCE_burn_in_observed'] = False
 
     #%% Stability. PCE. End of experiment [% of initial PCE]
     try:
         data['Stability_PCE_end_of_experiment'] = cdf.numericValues(userData['Stability. PCE. End of experiment [% of initial PCE]'])
     except: 
         print(f'Cound not read in: Stability. PCE. End of experiment [% of initial PCE] from: {fileName}')
-        data['Stability_PCE_end_of_experiment'] = ''
+        data['Stability_PCE_end_of_experiment'] = np.nan
 
     #%% Stability. PCE. T95 [h]
     try:
         data['Stability_PCE_T95'] = cdf.numericValues(userData['Stability. PCE. T95 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. T95 [h] from: {fileName}')
-        data['Stability_PCE_T95'] = ''
+        data['Stability_PCE_T95'] = np.nan
 
     #%% Stability. PCE. Ts95 [h]
     try:
         data['Stability_PCE_Ts95'] = cdf.numericValues(userData['Stability. PCE. Ts95 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Ts95 [h] from: {fileName}')
-        data['Stability_PCE_Ts95'] = ''
+        data['Stability_PCE_Ts95'] = np.nan
 
     #%% Stability. PCE. T80 [h]
     try:
         data['Stability_PCE_T80'] = cdf.numericValues(userData['Stability. PCE. T80 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. T80 [h] from: {fileName}')
-        data['Stability_PCE_T80'] = ''
+        data['Stability_PCE_T80'] = np.nan
 
     #%% Stability. PCE. Ts80 [h]
     try:
         data['Stability_PCE_Ts80'] = cdf.numericValues(userData['Stability. PCE. Ts80 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Ts80 [h] from: {fileName}')
-        data['Stability_PCE_Ts80'] = ''
+        data['Stability_PCE_Ts80'] = np.nan
 
     #%% Stability. PCE. Te80 [h]
     try:
         data['Stability_PCE_Te80'] = cdf.numericValues(userData['Stability. PCE. Te80 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Te80 [h] from: {fileName}')
-        data['Stability_PCE_Te80'] = ''
+        data['Stability_PCE_Te80'] = np.nan
 
     #%% Stability. PCE. Tse80 [h]
     try:
         data['Stability_PCE_Tse80'] = cdf.numericValues(userData['Stability. PCE. Tse80 [h]'])
     except: 
         print(f'Cound not read in: Stability. PCE. Tse80 [h] from: {fileName}')
-        data['Stability_PCE_Tse80'] = ''
+        data['Stability_PCE_Tse80'] = np.nan
 
     #%% Stability. PCE. After 1000 h [% of initial PCE]
     try:
         data['Stability_PCE_after_1000_h'] = cdf.numericValues(userData['Stability. PCE. After 1000 h [% of initial PCE]'])
     except: 
         print(f'Cound not read in: Stability. PCE. After 1000 h [% of initial PCE] from: {fileName}')
-        data['Stability_PCE_after_1000_h'] = ''
+        data['Stability_PCE_after_1000_h'] = np.nan
  
     #%% Stability. Lifetime energy yield [kWh/m^2]
     try:
         data['Stability_lifetime_energy_yield'] = cdf.numericValues(userData['Stability. Lifetime energy yield [kWh/m^2]'])
     except: 
         print(f'Cound not read in: Stability. Lifetime energy yield [kWh/m^2] from: {fileName}')
-        data['Stability_lifetime_energy_yield'] = ''
+        data['Stability_lifetime_energy_yield'] = np.nan
 
     #%% Stability. Flexible cell. Number of bending cycles
     try:
         data['Stability_flexible_cell_number_of_bending_cycles'] = cdf.numericInteger(userData['Stability. Flexible cell. Number of bending cycles'], default = 0)
     except: 
         print(f'Cound not read in: Stability. Flexible cell. Number of bending cycles from: {fileName}')
-        data['Stability_flexible_cell_number_of_bending_cycles'] = ''    
+        data['Stability_flexible_cell_number_of_bending_cycles'] = 0    
         
     #%% Stability. Flexible cell. Bending radius [degrees]
     try:
         data['Stability_flexible_cell_bending_radius'] = cdf.numericValues(userData['Stability. Flexible cell. Bending radius [degrees]'])
     except: 
         print(f'Cound not read in: Stability. Flexible cell. Bending radius [degrees] from: {fileName}')
-        data['Stability_flexible_cell_bending_radius'] = ''       
+        data['Stability_flexible_cell_bending_radius'] = np.nan       
 
     #%% Stability. Flexible cell. PCE. Initial value [%]
     try:
         data['Stability_flexible_cell_PCE_initial_value'] = cdf.numericValues(userData['Stability. Flexible cell. PCE. Initial value [%]'])
     except: 
         print(f'Cound not read in: Stability. Flexible cell. PCE. Initial value [%] from: {fileName}')
-        data['Stability_flexible_cell_PCE_initial_value'] = '' 
+        data['Stability_flexible_cell_PCE_initial_value'] = np.nan 
 
     #%% Stability. Flexible cell. PCE. End of experiment [% of initial PCE]
     try:
         data['Stability_flexible_cell_PCE_end_of_experiment'] = cdf.numericValues(userData['Stability. Flexible cell. PCE. End of experiment [% of initial PCE]'])
     except: 
         print(f'Cound not read in: Stability. Flexible cell. PCE. End of experiment [% of initial PCE]: {fileName}')
-        data['Stability_flexible_cell_PCE_end_of_experiment'] = '' 
+        data['Stability_flexible_cell_PCE_end_of_experiment'] = np.nan 
    
     #%% Stability. Link. Raw data for stability trace
     try:
@@ -2518,7 +2519,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_tested'] = cdf.trueOrFalse(userData['Outdoor. Tested [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. Tested [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_tested'] = ''
+        data['Outdoor_tested'] = False
 
     #%% Outdoor. Protocol [ISOS x/IEC x/ …]
     try:
@@ -2532,7 +2533,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_average_over_n_number_of_cells'] = cdf.numericInteger(userData['Outdoor. Average over N number of cells'], default = 1)
     except: 
         print(f'Cound not read in: Outdoor. Average over N number of cells from: {fileName}')
-        data['Outdoor_average_over_n_number_of_cells'] = ''
+        data['Outdoor_average_over_n_number_of_cells'] = 1
             
     #%% Outdoor. Location. Country [Country]
     try:
@@ -2567,21 +2568,21 @@ def cleanUserData(userData, fileName):
         data['Outdoor_installation_tilt'] = cdf.numericValues(userData['Outdoor. Installation. Tilt [degrees]'])
     except: 
         print(f'Cound not read in: Outdoor. Installation. Tilt [degrees] from: {fileName}')
-        data['Outdoor_installation_tilt'] = '' 
+        data['Outdoor_installation_tilt'] = np.nan 
 
     #%% Outdoor. Installation. Cardinal direction [degrees]
     try:
         data['Outdoor_installation_cardinal_direction'] = cdf.numericValues(userData['Outdoor. Installation. Cardinal direction [degrees]'])
     except: 
         print(f'Cound not read in: Outdoor. Installation. Cardinal direction [degrees] from: {fileName}')
-        data['Outdoor_installation_cardinal_direction'] = '' 
+        data['Outdoor_installation_cardinal_direction'] = np.nan 
 
     #%% Outdoor. Installation. Number of solar tracking axis [0/1/2]
     try:
         data['Outdoor_installation_number_of_solar_tracking_axis'] = cdf.numericInteger(userData['Outdoor. Installation. Number of solar tracking axis [0/1/2]'], default = 0)
     except: 
         print(f'Cound not read in: Outdoor. Installation. Number of solar tracking axis [0/1/2] from: {fileName}')
-        data['Outdoor_installation_number_of_solar_tracking_axis'] = ''
+        data['Outdoor_installation_number_of_solar_tracking_axis'] = 0
      
     #%% Outdoor. Time. Season [Winter/Summer/ …]
     try:
@@ -2609,7 +2610,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_time_total_exposure'] = cdf.numericValues(userData['Outdoor. Time. Total exposure [days]'])
     except: 
         print(f'Cound not read in: Outdoor. Time. Total exposure [days] from: {fileName}')
-        data['Outdoor_time_total_exposure'] = '' 
+        data['Outdoor_time_total_exposure'] = np.nan 
   
     #%% Outdoor. Potential bias. Load condition [Open circuit/MPPT/Constant potential/ …]
     try:
@@ -2630,7 +2631,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_potential_bias_passive_resistance'] = cdf.numericValues(userData['Outdoor. Potential bias. Passive resistance [ohm]'])
     except: 
         print(f'Cound not read in: Outdoor. Potential bias. Passive resistance [ohm] from: {fileName}')
-        data['Outdoor_potential_bias_passive_resistance'] = ''
+        data['Outdoor_potential_bias_passive_resistance'] = np.nan
    
     #%% Outdoor. Temperature. Load condition [Constant/Uncontrolled/Cycled/ ...]
     try:
@@ -2651,98 +2652,98 @@ def cleanUserData(userData, fileName):
         data['Outdoor_temperature_tmodule'] = cdf.numericValues(userData['Outdoor. Temperature. Tmodule [degrees C]'])
     except: 
         print(f'Cound not read in: Outdoor. Temperature. Tmodule [degrees C] from: {fileName}')
-        data['Outdoor_temperature_tmodule'] = '' 
+        data['Outdoor_temperature_tmodule'] = np.nan 
   
     #%% Outdoor. Periodic JV measurements [TRUE/FALSE]
     try:
         data['Outdoor_periodic_JV_measurements'] = cdf.trueOrFalse(userData['Outdoor. Periodic JV measurements [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. Periodic JV measurements [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_periodic_JV_measurements'] = ''
+        data['Outdoor_periodic_JV_measurements'] = False
       
     #%% Outdoor. Periodic JV measurements. Time between measurements [h]
     try:
         data['Outdoor_periodic_JV_measurements_time_between_measurements'] = cdf.numericValues(userData['Outdoor. Periodic JV measurements. Time between measurements [h]'])
     except: 
         print(f'Cound not read in: Outdoor. Periodic JV measurements. Time between measurements [h] from: {fileName}')
-        data['Outdoor_periodic_JV_measurements_time_between_measurements'] = '' 
+        data['Outdoor_periodic_JV_measurements_time_between_measurements'] = np.nan 
   
     #%% Outdoor. PCE. Initial value [%]
     try:
         data['Outdoor_PCE_initial_value'] = cdf.numericValues(userData['Outdoor. PCE. Initial value [%]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Initial value [%] from: {fileName}')
-        data['Outdoor_PCE_initial_value'] = ''
+        data['Outdoor_PCE_initial_value'] = np.nan
   
     #%% Outdoor. PCE. Burn in observed [TRUE/FALSE]
     try:
         data['Outdoor_PCE_burn_in_observed'] = cdf.trueOrFalse(userData['Outdoor. PCE. Burn in observed [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Burn in observed [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_PCE_burn_in_observed'] = ''
+        data['Outdoor_PCE_burn_in_observed'] = False
 
     #%% Outdoor. PCE. End of experiment [% of initial PCE]
     try:
         data['Outdoor_PCE_end_of_experiment'] = cdf.numericValues(userData['Outdoor. PCE. End of experiment [% of initial PCE]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. End of experiment [% of initial PCE] from: {fileName}')
-        data['Outdoor_PCE_end_of_experiment'] = ''
+        data['Outdoor_PCE_end_of_experiment'] = np.nan
 
     #%% Outdoor. PCE. T95 [h]
     try:
         data['Outdoor_PCE_T95'] = cdf.numericValues(userData['Outdoor. PCE. T95 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. T95 [h] from: {fileName}')
-        data['Outdoor_PCE_T95'] = ''
+        data['Outdoor_PCE_T95'] = np.nan
 
     #%% Outdoor. PCE. Ts95 [h]
     try:
         data['Outdoor_PCE_Ts95'] = cdf.numericValues(userData['Outdoor. PCE. Ts95 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Ts95 [h] from: {fileName}')
-        data['Outdoor_PCE_Ts95'] = ''
+        data['Outdoor_PCE_Ts95'] = np.nan
 
     #%% Outdoor. PCE. T80 [h]
     try:
         data['Outdoor_PCE_T80'] = cdf.numericValues(userData['Outdoor. PCE. T80 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. T80 [h] from: {fileName}')
-        data['Outdoor_PCE_T80'] = ''
+        data['Outdoor_PCE_T80'] = np.nan
 
     #%% Outdoor. PCE. Ts80 [h]
     try:
         data['Outdoor_PCE_Ts80'] = cdf.numericValues(userData['Outdoor. PCE. Ts80 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Ts80 [h] from: {fileName}')
-        data['Outdoor_PCE_Ts80'] = ''
+        data['Outdoor_PCE_Ts80'] = np.nan
 
     #%% Outdoor. PCE. Te80 [h]
     try:
         data['Outdoor_PCE_Te80'] = cdf.numericValues(userData['Outdoor. PCE. Te80 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Te80 [h] from: {fileName}')
-        data['Outdoor_PCE_Te80'] = ''
+        data['Outdoor_PCE_Te80'] = np.nan
 
     #%% Outdoor. PCE. Tse80 [h]
     try:
         data['Outdoor_PCE_Tse80'] = cdf.numericValues(userData['Outdoor. PCE. Tse80 [h]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. Tse80 [h] from: {fileName}')
-        data['Outdoor_PCE_Tse80'] = ''
+        data['Outdoor_PCE_Tse80'] = np.nan
 
     #%% Outdoor. PCE. After 1000 h [% of initial PCE]
     try:
         data['Outdoor_PCE_after_1000_h'] = cdf.numericValues(userData['Outdoor. PCE. After 1000 h [% of initial PCE]'])
     except: 
         print(f'Cound not read in: Outdoor. PCE. After 1000 h [% of initial PCE] from: {fileName}')
-        data['Outdoor_PCE_after_1000_h'] = ''
+        data['Outdoor_PCE_after_1000_h'] = np.nan
  
     #%% Outdoor. Power generated [kWh/year/m^2]
     try:
         data['Outdoor_power_generated'] = cdf.numericValues(userData['Outdoor. Power generated [kWh/year/m^2]'])
     except: 
         print(f'Cound not read in: Outdoor. Power generated [kWh/year/m^2] from: {fileName}')
-        data['Outdoor_power_generated'] = ''
+        data['Outdoor_power_generated'] = np.nan
  
     #%% Outdoor. Link. Raw data for outdoor trace
     try:
@@ -2756,7 +2757,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_detaild_weather_data_available'] = cdf.trueOrFalse(userData['Outdoor. Detaild weather data available [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. Detaild weather data available [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_detaild_weather_data_available'] = ''
+        data['Outdoor_detaild_weather_data_available'] = False
    
     #%% Outdoor. Link. Detailed weather data
     try:
@@ -2770,7 +2771,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_spectral_data_available'] = cdf.trueOrFalse(userData['Outdoor. Spectral data available [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. Spectral data available [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_spectral_data_available'] = ''
+        data['Outdoor_spectral_data_available'] = False
 
     #%% Outdoor. Link. Spectral data
     try:
@@ -2784,7 +2785,7 @@ def cleanUserData(userData, fileName):
         data['Outdoor_irradiance_measured'] = cdf.trueOrFalse(userData['Outdoor. Irradiance measured [TRUE/FALSE]'])
     except: 
         print(f'Cound not read in: Outdoor. Irradiance measured [TRUE/FALSE] from: {fileName}')
-        data['Outdoor_irradiance_measured'] = ''
+        data['Outdoor_irradiance_measured'] = False
 
     #%% Outdoor. Link. Irradiance data 
     try:
