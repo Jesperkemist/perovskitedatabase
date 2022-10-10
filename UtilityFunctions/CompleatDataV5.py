@@ -105,8 +105,9 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
                 date = datetime.strptime(str(date)[1:-1], '%Y, %m, %d').date()
             except:
                 #date = pd.to_datetime(defaultDate[i])
-                date = pd.to_datetime(defaultDate[i].replace(":", "-"))
-                date = datetime.date(date)
+                #date = pd.to_datetime(defaultDate[i].replace(":", "-"))
+                #date = datetime.date(date)
+                date = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
 
             timestamp.append(date)
 
@@ -129,8 +130,9 @@ def citationData(DOInumbers, defaultDate, defaultAuthor, DOIPath):
 
             try:
                 #date = pd.to_datetime(str(defaultDate[i]))
-                date = pd.to_datetime(str(defaultDate[i]).replace(":", "-"))
-                date = datetime.date(date)
+                #date = pd.to_datetime(str(defaultDate[i]).replace(":", "-"))
+                #date = datetime.date(date)
+                date = pd.to_datetime(datetime.now().strftime("%Y-%m-%d"))
             except:
                 # Default date
                 #date = pd.to_datetime(str(2000))
@@ -179,7 +181,7 @@ def DerivedtUserData(userData, fileName):
         data['JV_Voc'], data['JV_Voc_scanDirection'] = codf.defaultVoc(userData)
     except:          
         print(f'Cound not derive the default Voc')
-        data['JV_Voc'] = '' 
+        data['JV_Voc'] = np.nan 
         data['JV_Voc_scanDirection'] = ''
 
     #%% Jsc 
@@ -188,7 +190,7 @@ def DerivedtUserData(userData, fileName):
         data['JV_Jsc'], data['JV_Jsc_scanDirection'] = codf.defaultJsc(userData)
     except:          
         print(f'Cound not derive the default Jsc')
-        data['JV_Jsc'] = '' 
+        data['JV_Jsc'] = np.nan  
         data['JV_Jsc_scanDirection'] = ''
 
     #%% FF 
@@ -197,7 +199,7 @@ def DerivedtUserData(userData, fileName):
         data['JV_FF'], data['JV_FF_scanDirection'] = codf.defaultFF(userData)
     except:          
         print(f'Cound not derive the default FF')
-        data['JV_FF'] = '' 
+        data['JV_FF'] = np.nan  
         data['JV_FF_scanDirection'] = ''
 
     #%% PCE 
@@ -206,7 +208,7 @@ def DerivedtUserData(userData, fileName):
         data['JV_PCE'], data['JV_PCE_scanDirection'] = codf.defaultPCE(userData)
     except:          
         print(f'Cound not derive the default PCE')
-        data['JV_PCE'] = '' 
+        data['JV_PCE'] = np.nan  
         data['JV_PCE_scanDirection'] = ''
 
     #%% Hysteresis index
@@ -214,7 +216,7 @@ def DerivedtUserData(userData, fileName):
         data['HysteresisIndex'] = codf.hysteresisIndex(userData)
     except:          
         print(f'Cound not derive the Hysteresis Index')
-        data['HysteresisIndex'] = ''
+        data['HysteresisIndex'] = np.nan 
 
     #%% Perovskite short composition
     try:
@@ -235,7 +237,7 @@ def DerivedtUserData(userData, fileName):
         data['Lead_free'] = codf.isLeadFree(data['PerovskiteLongComp'])
     except:           
         print(f'Cound not determin if lead free perovskite:')
-        data['Lead_free'] = ''
+        data['Lead_free'] = False
 
     print(f'Finished to derrive data based on {fileName}')
     return data
